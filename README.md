@@ -153,7 +153,7 @@ pip install ryu==4.34 eventlet==0.33.3 msgpack==1.0.7
 ### Python dependencies
 
 ```bash
-git clone https://github.com/anandahadielyas/saintelague-sdn-loadbalancing.git
+git clone https://github.com/anandahadi-usk/saintelague-sdn-loadbalancing.git
 cd saintelague-sdn-loadbalancing
 pip install -r requirements.txt
 ```

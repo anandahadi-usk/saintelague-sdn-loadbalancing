@@ -24,7 +24,7 @@ sudo service openvswitch-switch start
 ### 2. Clone and Install
 
 ```bash
-git clone https://github.com/anandahadielyas/saintelague-sdn-loadbalancing.git
+git clone https://github.com/anandahadi-usk/saintelague-sdn-loadbalancing.git
 cd saintelague-sdn-loadbalancing
 python3.8 -m venv venv
 source venv/bin/activate

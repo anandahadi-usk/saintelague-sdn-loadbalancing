@@ -72,7 +72,7 @@ KEYWORDS (ketik satu per satu di form):
 
 RELATED IDENTIFIERS (isi setelah paper publish):
 Is supplement to: [DOI paper — isi setelah paper diterima]
-Is documented by: https://github.com/anandahadielyas/saintelague-sdn-loadbalancing
+Is documented by: https://github.com/anandahadi-usk/saintelague-sdn-loadbalancing
 
 VERSION: 1.0.0
 

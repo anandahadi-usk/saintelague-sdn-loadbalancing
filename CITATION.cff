@@ -32,7 +32,7 @@ authors:
 version: "1.0.0"
 date-released: "2026-03-23"
 license: MIT
-repository-code: "https://github.com/anandahadielyas/saintelague-sdn-loadbalancing"
+repository-code: "https://github.com/anandahadi-usk/saintelague-sdn-loadbalancing"
 keywords:
   - software-defined networking
   - load balancing
