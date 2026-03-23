@@ -9,14 +9,26 @@ abstract: >
   Key finding: Sainte-Laguë achieves sustained convergence (τ=88.8 flows)
   with complete stochastic dominance (Cliff's δ=1.000) over all competitors.
 authors:
-  - family-names: "[Last Name]"
-    given-names: "[First Name]"
-    affiliation: "Universitas Syiah Kuala"
-    orcid: "https://orcid.org/[YOUR-ORCID]"
+  - family-names: "Elyas"
+    given-names: "Ananda Hadi"
+    affiliation: "Doctoral Program of Engineering, Universitas Syiah Kuala"
+    email: "anandahadi@mhs.usk.ac.id"
+  - family-names: "Adriman"
+    given-names: "Ramzi"
+    affiliation: "Dept. Electrical and Computer Engineering, Universitas Syiah Kuala"
+    email: "ramzi.adriman@usk.ac.id"
+  - family-names: "Syahrial"
+    given-names: "Syahrial"
+    affiliation: "Dept. Electrical and Computer Engineering, Universitas Dharmawangsa"
+    email: "syahrial@usk.ac.id"
+  - family-names: "Arif"
+    given-names: "Teuku Yuliar"
+    affiliation: "Dept. Electrical and Computer Engineering, Universitas Syiah Kuala"
+    email: "yuliar@usk.ac.id"
 version: "1.0.0"
-date-released: "2026-03-22"
+date-released: "2026-03-23"
 license: MIT
-repository-code: "https://github.com/YOUR_USERNAME/p5-saintelague-sdn"
+repository-code: "https://github.com/anandahadielyas/p5-saintelague-sdn"
 keywords:
   - software-defined networking
   - load balancing
@@ -32,8 +44,17 @@ preferred-citation:
     Post-Reconfiguration Convergence in SDN Load Balancing:
     A Comparative Empirical Study
   authors:
-    - family-names: "[Last Name]"
-      given-names: "[First Name]"
+    - family-names: "Elyas"
+      given-names: "Ananda Hadi"
+      affiliation: "Universitas Syiah Kuala"
+    - family-names: "Adriman"
+      given-names: "Ramzi"
+      affiliation: "Universitas Syiah Kuala"
+    - family-names: "Syahrial"
+      given-names: "Syahrial"
+      affiliation: "Universitas Dharmawangsa"
+    - family-names: "Arif"
+      given-names: "Teuku Yuliar"
       affiliation: "Universitas Syiah Kuala"
   journal: "[Target Journal]"
   year: 2026

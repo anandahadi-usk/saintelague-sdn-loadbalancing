@@ -209,8 +209,9 @@ python3 docs/create_figures_p5.py
 If you use this code or data in your research, please cite:
 
 ```bibtex
-@article{Nanda2026,
-  author  = {Nanda, {[First Name]} and {[Co-authors]}},
+@article{Elyas2026,
+  author  = {Elyas, Ananda Hadi and Adriman, Ramzi and
+             Syahrial, Syahrial and Arif, Teuku Yuliar},
   title   = {{Post-Reconfiguration Convergence in SDN Load Balancing:
               A Comparative Empirical Study}},
   journal = {{[Target Journal]}},
@@ -245,7 +246,11 @@ This project is licensed under the MIT License.
 
 ---
 
-## Contact
+## Authors
 
-**[Your Name]**
-Universitas Syiah Kuala (Unsyiah), Banda Aceh, Indonesia
+| # | Name | Affiliation | Email |
+|---|------|-------------|-------|
+| 1 | **Ananda Hadi Elyas** | Doctoral Program of Engineering, Universitas Syiah Kuala | anandahadi@mhs.usk.ac.id |
+| 2 | Ramzi Adriman | Dept. Electrical and Computer Engineering, Universitas Syiah Kuala | ramzi.adriman@usk.ac.id |
+| 3 | Syahrial Syahrial | Dept. Electrical and Computer Engineering, Universitas Dharmawangsa | syahrial@usk.ac.id |
+| 4 | Teuku Yuliar Arif | Dept. Electrical and Computer Engineering, Universitas Syiah Kuala | yuliar@usk.ac.id |
