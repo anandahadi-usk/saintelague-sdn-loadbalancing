@@ -58,3 +58,6 @@ docs/bab_*.md
 *.bak
 *.zip
 results/archive/
+
+# Reference PDFs — copyright materials, not for public distribution
+docs/referensi/
