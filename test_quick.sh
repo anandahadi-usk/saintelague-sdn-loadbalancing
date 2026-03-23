@@ -5,7 +5,7 @@
 #
 # Usage:
 #   sudo bash test_quick.sh
-#   SUDO_PASS=admin bash test_quick.sh
+#   SUDO_PASS=your_sudo_password bash test_quick.sh
 
 set -e
 

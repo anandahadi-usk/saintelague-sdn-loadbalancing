@@ -5,7 +5,7 @@ Runs focused QoS experiments (5 runs × 4 algorithms × 3 scenarios = 60 total).
 Collects: throughput, latency, jitter, packet loss, flow_setup_ms.
 
 Usage:
-  PYTHONPATH=$(pwd) SUDO_PASS=admin venv/bin/python3 evaluation/qos_experiment_runner.py \
+  PYTHONPATH=$(pwd) SUDO_PASS=your_sudo_password venv/bin/python3 evaluation/qos_experiment_runner.py \
       --scenario all --runs 5 --yes
 """
 import os

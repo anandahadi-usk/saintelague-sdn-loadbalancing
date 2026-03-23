@@ -314,7 +314,7 @@ def main():
     if not all_run_results:
         print("\nNo QoS data found. Run qos_experiment_runner.py first.")
         print("Command:")
-        print("  PYTHONPATH=$(pwd) SUDO_PASS=admin venv/bin/python3 "
+        print("  PYTHONPATH=$(pwd) SUDO_PASS=your_sudo_password venv/bin/python3 "
               "evaluation/qos_experiment_runner.py --scenario all --runs 5 --yes")
 
 
