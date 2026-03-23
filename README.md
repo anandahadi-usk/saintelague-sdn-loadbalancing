@@ -224,10 +224,13 @@ If you use this code or data in your research, please cite:
 
 ## Dataset
 
-Raw experimental data (219 runs × per-flow metrics) available on Zenodo:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19186281.svg)](https://doi.org/10.5281/zenodo.19186281)
 
-> **DOI:** `[will be added upon dataset upload]`
-> **Size:** ~450 MB (CSV + logs)
+Experimental data (219 runs × per-flow metrics) available on Zenodo:
+
+> **DOI:** `10.5281/zenodo.19186281`
+> **URL:** https://doi.org/10.5281/zenodo.19186281
+> **License:** CC BY 4.0
 
 ---
 

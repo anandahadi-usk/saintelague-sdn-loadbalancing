@@ -33,6 +33,8 @@ version: "1.0.0"
 date-released: "2026-03-23"
 license: MIT
 repository-code: "https://github.com/anandahadi-usk/saintelague-sdn-loadbalancing"
+doi: "10.5281/zenodo.19186281"
+url: "https://doi.org/10.5281/zenodo.19186281"
 keywords:
   - software-defined networking
   - load balancing
