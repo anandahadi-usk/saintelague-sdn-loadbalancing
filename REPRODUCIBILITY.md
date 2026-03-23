@@ -1,4 +1,4 @@
-# Reproducibility Guide — P5
+# Reproducibility Guide
 
 ## Environment
 
@@ -24,8 +24,8 @@ sudo service openvswitch-switch start
 ### 2. Clone and Install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/p5-saintelague-sdn.git
-cd p5-saintelague-sdn
+git clone https://github.com/anandahadielyas/saintelague-sdn-loadbalancing.git
+cd saintelague-sdn-loadbalancing
 python3.8 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt

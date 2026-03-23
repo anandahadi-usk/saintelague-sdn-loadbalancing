@@ -3,7 +3,7 @@ message: "If you use this software, please cite it as below."
 type: software
 title: "Sainte-Laguë Proportional Allocation for SDN Load Balancing"
 abstract: >
-  Implementation and experimental data for a controlled empirical study
+  Implementation and experimental dataset for a controlled empirical study
   comparing WRR, IWRR, WLC, and Sainte-Laguë load balancing algorithms
   in SDN environments under dynamic weight-change conditions.
   Key finding: Sainte-Laguë achieves sustained convergence (τ=88.8 flows)
@@ -13,22 +13,26 @@ authors:
     given-names: "Ananda Hadi"
     affiliation: "Doctoral Program of Engineering, Universitas Syiah Kuala"
     email: "anandahadi@mhs.usk.ac.id"
+    orcid: "https://orcid.org/0000-0001-8468-5411"
   - family-names: "Adriman"
     given-names: "Ramzi"
     affiliation: "Dept. Electrical and Computer Engineering, Universitas Syiah Kuala"
     email: "ramzi.adriman@usk.ac.id"
+    orcid: "https://orcid.org/0000-0002-2301-3627"
   - family-names: "Syahrial"
     given-names: "Syahrial"
     affiliation: "Dept. Electrical and Computer Engineering, Universitas Dharmawangsa"
     email: "syahrial@usk.ac.id"
+    orcid: "https://orcid.org/0000-0002-1436-4468"
   - family-names: "Arif"
     given-names: "Teuku Yuliar"
     affiliation: "Dept. Electrical and Computer Engineering, Universitas Syiah Kuala"
     email: "yuliar@usk.ac.id"
+    orcid: "https://orcid.org/0000-0002-8923-6778"
 version: "1.0.0"
 date-released: "2026-03-23"
 license: MIT
-repository-code: "https://github.com/anandahadielyas/p5-saintelague-sdn"
+repository-code: "https://github.com/anandahadielyas/saintelague-sdn-loadbalancing"
 keywords:
   - software-defined networking
   - load balancing
@@ -47,15 +51,19 @@ preferred-citation:
     - family-names: "Elyas"
       given-names: "Ananda Hadi"
       affiliation: "Universitas Syiah Kuala"
+      orcid: "https://orcid.org/0000-0001-8468-5411"
     - family-names: "Adriman"
       given-names: "Ramzi"
       affiliation: "Universitas Syiah Kuala"
+      orcid: "https://orcid.org/0000-0002-2301-3627"
     - family-names: "Syahrial"
       given-names: "Syahrial"
       affiliation: "Universitas Dharmawangsa"
+      orcid: "https://orcid.org/0000-0002-1436-4468"
     - family-names: "Arif"
       given-names: "Teuku Yuliar"
       affiliation: "Universitas Syiah Kuala"
+      orcid: "https://orcid.org/0000-0002-8923-6778"
   journal: "[Target Journal]"
   year: 2026
   status: under-review

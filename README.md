@@ -92,7 +92,7 @@ All comparisons: p < 0.0001 (Mann-Whitney U), |δ| ≥ 0.625
 ## Repository Structure
 
 ```
-P5/
+saintelague-sdn-loadbalancing/
 ├── config/                      # Experiment configuration
 │   ├── experiment_config.py     # Algorithms, scenarios, seeds, metrics
 │   ├── algo_config.py           # Per-algorithm parameters
@@ -153,8 +153,8 @@ pip install ryu==4.34 eventlet==0.33.3 msgpack==1.0.7
 ### Python dependencies
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/p5-saintelague-sdn.git
-cd p5-saintelague-sdn
+git clone https://github.com/anandahadielyas/saintelague-sdn-loadbalancing.git
+cd saintelague-sdn-loadbalancing
 pip install -r requirements.txt
 ```
 
@@ -235,8 +235,8 @@ Raw experimental data (219 runs × per-flow metrics) available on Zenodo:
 
 This repository is part of a research program on adaptive SDN scheduling:
 
-- **P5 (this repo):** Empirical characterisation of weight-change convergence
-- **P6 (in progress):** PPO-SL-QoS — RL-based convergence acceleration with QoS priority ordering
+- **This study:** Empirical characterisation of weight-change convergence behaviour
+- **Follow-up (in progress):** PPO-SL-QoS — RL-based convergence acceleration with QoS priority ordering
 
 ---
 
@@ -250,7 +250,9 @@ This project is licensed under the MIT License.
 
 | # | Name | Affiliation | Email |
 |---|------|-------------|-------|
-| 1 | **Ananda Hadi Elyas** | Doctoral Program of Engineering, Universitas Syiah Kuala | anandahadi@mhs.usk.ac.id |
-| 2 | Ramzi Adriman | Dept. Electrical and Computer Engineering, Universitas Syiah Kuala | ramzi.adriman@usk.ac.id |
-| 3 | Syahrial Syahrial | Dept. Electrical and Computer Engineering, Universitas Dharmawangsa | syahrial@usk.ac.id |
-| 4 | Teuku Yuliar Arif | Dept. Electrical and Computer Engineering, Universitas Syiah Kuala | yuliar@usk.ac.id |
+| # | Name | Affiliation | ORCID |
+|---|------|-------------|-------|
+| 1 | **Ananda Hadi Elyas** | Doctoral Program of Engineering, Universitas Syiah Kuala | [0000-0001-8468-5411](https://orcid.org/0000-0001-8468-5411) |
+| 2 | Ramzi Adriman | Dept. ECE, Universitas Syiah Kuala | [0000-0002-2301-3627](https://orcid.org/0000-0002-2301-3627) |
+| 3 | Syahrial Syahrial | Dept. ECE, Universitas Dharmawangsa | [0000-0002-1436-4468](https://orcid.org/0000-0002-1436-4468) |
+| 4 | Teuku Yuliar Arif | Dept. ECE, Universitas Syiah Kuala | [0000-0002-8923-6778](https://orcid.org/0000-0002-8923-6778) |
