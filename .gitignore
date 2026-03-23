@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs (too many — use Zenodo for raw data)
+logs/
+*.log
+
+# Large binary documents (distributed separately)
+docs/*.docx
+docs/*.pptx
+docs/*.xlsx
+docs/*.pdf
+
+# Raw results (too large — distributed via Zenodo)
+results/raw/
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Credentials / environment
+.env
+*.env
+
+# Temporary
+*.tmp
+*.bak

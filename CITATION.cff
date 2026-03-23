@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Sainte-Laguë Proportional Allocation for SDN Load Balancing"
+abstract: >
+  Implementation and experimental data for a controlled empirical study
+  comparing WRR, IWRR, WLC, and Sainte-Laguë load balancing algorithms
+  in SDN environments under dynamic weight-change conditions.
+  Key finding: Sainte-Laguë achieves sustained convergence (τ=88.8 flows)
+  with complete stochastic dominance (Cliff's δ=1.000) over all competitors.
+authors:
+  - family-names: "[Last Name]"
+    given-names: "[First Name]"
+    affiliation: "Universitas Syiah Kuala"
+    orcid: "https://orcid.org/[YOUR-ORCID]"
+version: "1.0.0"
+date-released: "2026-03-22"
+license: MIT
+repository-code: "https://github.com/YOUR_USERNAME/p5-saintelague-sdn"
+keywords:
+  - software-defined networking
+  - load balancing
+  - Sainte-Laguë
+  - convergence
+  - weighted round robin
+  - OpenFlow
+  - Mininet
+  - Ryu
+preferred-citation:
+  type: article
+  title: >
+    Post-Reconfiguration Convergence in SDN Load Balancing:
+    A Comparative Empirical Study
+  authors:
+    - family-names: "[Last Name]"
+      given-names: "[First Name]"
+      affiliation: "Universitas Syiah Kuala"
+  journal: "[Target Journal]"
+  year: 2026
+  status: under-review

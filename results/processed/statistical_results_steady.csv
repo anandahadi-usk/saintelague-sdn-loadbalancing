@@ -1,0 +1,13 @@
+scenario,metric,algo_1,algo_2,label_1,label_2,mean_1,std_1,mean_2,std_2,p_value,cliff_delta,effect_size,significant,n1,n2
+steady,end_mape,saintelague,wrr,Sainte-Laguë,WRR,0.0744,0.1933,1.2362,4.2103,0.372737,-0.1378,negligible,False,15,15
+steady,end_mape,saintelague,iwrr,Sainte-Laguë,IWRR,0.0744,0.1933,0.0,0.0,0.164394,0.1333,negligible,False,15,15
+steady,end_mape,saintelague,wlc,Sainte-Laguë,WLC,0.0744,0.1933,0.0,0.0,0.164394,0.1333,negligible,False,15,15
+steady,end_mape,wrr,iwrr,WRR,IWRR,1.2362,4.2103,0.0,0.0,0.038353,0.2667,small,True,15,15
+steady,end_mape,wrr,wlc,WRR,WLC,1.2362,4.2103,0.0,0.0,0.038353,0.2667,small,True,15,15
+steady,end_mape,iwrr,wlc,IWRR,WLC,0.0,0.0,0.0,0.0,1.0,0.0,negligible,False,15,15
+steady,end_jfi_c,saintelague,wrr,Sainte-Laguë,WRR,1.0,0.0,0.9966,0.0126,0.372737,0.1378,negligible,False,15,15
+steady,end_jfi_c,saintelague,iwrr,Sainte-Laguë,IWRR,1.0,0.0,1.0,0.0,0.164394,-0.1333,negligible,False,15,15
+steady,end_jfi_c,saintelague,wlc,Sainte-Laguë,WLC,1.0,0.0,1.0,0.0,0.164394,-0.1333,negligible,False,15,15
+steady,end_jfi_c,wrr,iwrr,WRR,IWRR,0.9966,0.0126,1.0,0.0,0.038353,-0.2667,small,True,15,15
+steady,end_jfi_c,wrr,wlc,WRR,WLC,0.9966,0.0126,1.0,0.0,0.038353,-0.2667,small,True,15,15
+steady,end_jfi_c,iwrr,wlc,IWRR,WLC,1.0,0.0,1.0,0.0,1.0,0.0,negligible,False,15,15
