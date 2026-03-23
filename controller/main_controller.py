@@ -1,6 +1,6 @@
 # controller/main_controller.py
 """
-P5 Ryu Controller — Dynamic Weight Change Load Balancer
+Ryu Controller — Dynamic Weight Change Load Balancer
 Supports 4 algorithms: WRR, IWRR, WLC, Sainte-Laguë
 
 Launch example:
@@ -92,7 +92,7 @@ class P5LoadBalancer(app_manager.RyuApp):
         # ── Algorithm instance ───────────────────────────────────────────
         AlgoClass = ALGO_REGISTRY.get(self.algo_name, SainteLangue)
         self.algo = AlgoClass(list(INITIAL_WEIGHTS))
-        self.logger.info(f"[P5] Algorithm: {self.algo_name.upper()}  Run: {self.run_id}  Scenario: {self.scenario}")
+        self.logger.info(f"[SL-SDN] Algorithm: {self.algo_name.upper()}  Run: {self.run_id}  Scenario: {self.scenario}")
 
         # ── State tracking ────────────────────────────────────────────────
         self._lock            = threading.Lock()
@@ -127,7 +127,7 @@ class P5LoadBalancer(app_manager.RyuApp):
             "mape", "jfi_c",
             "weight_change_event", "phase",
         ])
-        self.logger.info(f"[P5] Logging to {fname}")
+        self.logger.info(f"[SL-SDN] Logging to {fname}")
 
         # ── Flow timing CSV (flow_setup_ms per decision) ─────────────────
         tname = os.path.join(
@@ -162,7 +162,7 @@ class P5LoadBalancer(app_manager.RyuApp):
         match = parser.OFPMatch()
         actions = [parser.OFPActionOutput(ofp.OFPP_CONTROLLER, ofp.OFPCML_NO_BUFFER)]
         self._add_flow(dp, 0, match, actions)
-        self.logger.info(f"[P5] Switch connected: dpid={dp.id}")
+        self.logger.info(f"[SL-SDN] Switch connected: dpid={dp.id}")
 
     @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     def packet_in_handler(self, ev):
@@ -417,7 +417,7 @@ class P5LoadBalancer(app_manager.RyuApp):
             self._weight_changes.append(record)
 
             self.logger.info(
-                f"[P5] Weight change #{change_num} at t={elapsed:.1f}s "
+                f"[SL-SDN] Weight change #{change_num} at t={elapsed:.1f}s "
                 f"(flow #{self._decision_num}): {old} → {new_weights}  "
                 f"MAPE={record['mape_at_change']:.2f}%  label={label}"
             )

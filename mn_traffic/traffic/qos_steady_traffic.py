@@ -25,7 +25,7 @@ class QoSSteadyTrafficGenerator(BaseTrafficGenerator):
         )
 
     def _run_traffic_pattern(self):
-        info(f"[P5-QoS-Steady] Starting | algo={self.algorithm} run={self.run_id}\n")
+        info(f"[SL-SDN-QoS-S1] Starting | algo={self.algorithm} run={self.run_id}\n")
 
         self._open_qos_csv(self._results_dir)
 
@@ -69,7 +69,7 @@ class QoSSteadyTrafficGenerator(BaseTrafficGenerator):
             if t.is_alive():
                 t.join(timeout=8.0)
 
-        info(f"[P5-QoS-Steady] Done.\n")
+        info(f"[SL-SDN-QoS-S1] Done.\n")
 
 
 def main():

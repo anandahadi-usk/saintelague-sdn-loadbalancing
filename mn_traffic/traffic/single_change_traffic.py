@@ -24,9 +24,9 @@ class SingleChangeTrafficGenerator(BaseTrafficGenerator):
         self.changes = SCENARIOS["single_change"]["weight_changes"]
 
     def _run_traffic_pattern(self):
-        info(f"[P5-SingleChange] Starting | algo={self.algorithm} "
+        info(f"[SL-SDN-S2] Starting | algo={self.algorithm} "
              f"run={self.run_id} dur={self.duration}s\n")
-        info(f"[P5-SingleChange] Weight change at t=45s: [3,5,2]→[6,5,2]\n")
+        info(f"[SL-SDN-S2] Weight change at t=45s: [3,5,2]→[6,5,2]\n")
 
         FLOW_DUR = 4
         deadline = time.time() + self.duration
@@ -39,7 +39,7 @@ class SingleChangeTrafficGenerator(BaseTrafficGenerator):
                     time.sleep(t_delay)
                     if self.remaining() > 0:
                         self.trigger_weight_change(weights, label)
-                        info(f"[P5-SingleChange] ⚡ Weight change at t={self.elapsed():.1f}s: "
+                        info(f"[SL-SDN-S2] ⚡ Weight change at t={self.elapsed():.1f}s: "
                              f"→ {weights}  label={label}\n")
                 return run
             ct = threading.Thread(
@@ -77,7 +77,7 @@ class SingleChangeTrafficGenerator(BaseTrafficGenerator):
         for ct in change_threads:
             ct.join(timeout=5.0)
 
-        info(f"[P5-SingleChange] Done.\n")
+        info(f"[SL-SDN-S2] Done.\n")
 
 
 def main():

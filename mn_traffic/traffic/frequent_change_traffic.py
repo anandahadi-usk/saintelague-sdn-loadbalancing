@@ -23,9 +23,9 @@ class FrequentChangeTrafficGenerator(BaseTrafficGenerator):
         self.changes = SCENARIOS["frequent_changes"]["weight_changes"]
 
     def _run_traffic_pattern(self):
-        info(f"[P5-FreqChange] Starting | algo={self.algorithm} "
+        info(f"[SL-SDN-S3] Starting | algo={self.algorithm} "
              f"run={self.run_id} dur={self.duration}s\n")
-        info(f"[P5-FreqChange] 4 weight changes at t=30,60,90,120s\n")
+        info(f"[SL-SDN-S3] 4 weight changes at t=30,60,90,120s\n")
 
         FLOW_DUR = 4
         deadline = time.time() + self.duration
@@ -38,7 +38,7 @@ class FrequentChangeTrafficGenerator(BaseTrafficGenerator):
                     time.sleep(t_delay)
                     if self.remaining() > 0:
                         self.trigger_weight_change(weights, label)
-                        info(f"[P5-FreqChange] ⚡ t={self.elapsed():.1f}s "
+                        info(f"[SL-SDN-S3] ⚡ t={self.elapsed():.1f}s "
                              f"→ {weights}  label={label}\n")
                 return run
             ct = threading.Thread(
@@ -76,7 +76,7 @@ class FrequentChangeTrafficGenerator(BaseTrafficGenerator):
         for ct in change_threads:
             ct.join(timeout=5.0)
 
-        info(f"[P5-FreqChange] Done.\n")
+        info(f"[SL-SDN-S3] Done.\n")
 
 
 def main():

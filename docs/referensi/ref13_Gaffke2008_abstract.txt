@@ -1,0 +1,20 @@
+REFERENSI [13] — Gaffke2008
+======================================================================
+
+Judul  : Divisor methods for proportional representation systems: An optimization approach to vector and matrix apportionment problems
+Penulis: Gaffke, Norbert; Pukelsheim, Friedrich
+Jurnal : Mathematical Social Sciences
+Tahun  : 2008
+DOI    : 10.1016/j.mathsocsci.2008.01.004
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+This paper establishes divisor apportionment methods as the solution to a convex integer optimisation problem, proving that methods like Sainte-Laguë uniquely minimise the maximum proportionality deviation across all possible weight vectors. The optimality guarantee provided here — that the Sainte-Laguë quotient Q(i) = wi/(2ni+1) greedily minimises proportionality error at each step — directly implies fast post-change convergence in the network scheduling context of the P5 research.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Gaffke2008
+- Status DOI: TERVERIFIKASI CrossRef

@@ -1,0 +1,20 @@
+REFERENSI [30] — Pfaff2015
+======================================================================
+
+Judul  : The Design and Implementation of Open vSwitch
+Penulis: Pfaff et al. 2015
+Jurnal : 
+Tahun  : 
+DOI    : Tidak ada DOI
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+This paper describes the architecture and implementation of Open vSwitch (OVS), the production-grade virtual switch used as the data plane in the P5 testbed. OVS supports OpenFlow 1.3, enabling the Ryu controller to install and modify flow table entries that implement the DNAT/SNAT load balancing rules. The paper details OVS's flow caching, port mirroring, and QoS mechanisms — all of which are used in the P5 experimental infrastructure. OVS received the USENIX NSDI Best Paper Award in 2015.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Pfaff2015
+- Status DOI: Tidak ada DOI (buku/tech report/paper lama)

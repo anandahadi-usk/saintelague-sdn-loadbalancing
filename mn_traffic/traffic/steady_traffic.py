@@ -21,7 +21,7 @@ class SteadyTrafficGenerator(BaseTrafficGenerator):
         )
 
     def _run_traffic_pattern(self):
-        info(f"[P5-Steady] Starting | algo={self.algorithm} run={self.run_id} dur={self.duration}s\n")
+        info(f"[SL-SDN-S1] Starting | algo={self.algorithm} run={self.run_id} dur={self.duration}s\n")
         FLOW_DUR = 5
         deadline = time.time() + self.duration
 
@@ -47,7 +47,7 @@ class SteadyTrafficGenerator(BaseTrafficGenerator):
             for t in threads:
                 t.join(timeout=1.0)
 
-        info(f"[P5-Steady] Done.\n")
+        info(f"[SL-SDN-S1] Done.\n")
 
 
 def main():

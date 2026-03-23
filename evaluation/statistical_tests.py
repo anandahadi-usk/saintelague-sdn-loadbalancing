@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # evaluation/statistical_tests.py
 """
-P5 Statistical Tests
+Statistical Tests
 Mann-Whitney U + Cliff's delta for all pairwise algorithm comparisons.
 Primary metric: recovery_flows and CDE (convergence quality).
 Secondary: end_mape, end_jfi_c.
@@ -129,7 +129,7 @@ def run_tests(scenario: str) -> pd.DataFrame:
 
 def main():
     import argparse
-    parser = argparse.ArgumentParser(description="P5 Statistical Tests")
+    parser = argparse.ArgumentParser(description="Statistical Tests")
     parser.add_argument("--scenario", default="all",
                         choices=list(SCENARIOS.keys()) + ["all"])
     args = parser.parse_args()

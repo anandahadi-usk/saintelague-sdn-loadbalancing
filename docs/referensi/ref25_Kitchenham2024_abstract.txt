@@ -1,0 +1,60 @@
+REFERENSI [25] — Kitchenham2024
+======================================================================
+
+Judul  : Recommendations for analysing and meta-analysing small sample size software engineering experiments
+Penulis: Kitchenham, Barbara; Madeyski, Lech
+Jurnal : Empirical Software Engineering
+Tahun  : 2024
+DOI    : 10.1007/s10664-024-10504-1
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+<jats:title>Abstract</jats:title><jats:sec>
+                <jats:title>Context</jats:title>
+                Software engineering (SE) experiments often have small sample sizes. This can result in data sets with non-normal characteristics, which poses problems as standard parametric meta-analysis, using the standardized mean difference (StdMD) effect size, assumes normally distributed sample data. Small sample sizes and non-normal data set characteristics can also lead to unreliable estimates of parametric effect sizes. Meta-analysis is even more complicated if experiments use complex experimental designs, such as two-group and four-group cross-over designs, which are popular in SE experiments.
+              </jats:sec><jats:sec>
+                <jats:title>Objective</jats:title>
+                Our objective was to develop a validated and robust meta-analysis method that can help to address the problems of small sample sizes and complex experimental designs without relying upon data samples being normally distributed.
+              </jats:sec><jats:sec>
+                <jats:title>Method</jats:title>
+                To illustrate the challenges, we used real SE data sets. We built upon previous research and developed a robust meta-analysis method able to deal with challenges typical for SE experiments. We validated our method via simulations comparing StdMD with two robust alternatives: the probability of superiority (<jats:inline-formula><jats:alternatives><jats:tex-math>$$\hat{p}$$</jats:tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML">
+                    <mml:mover>
+                      <mml:mi>p</mml:mi>
+                      <mml:mo>^</mml:mo>
+                    </mml:mover>
+                  </mml:math></jats:alternatives></jats:inline-formula>) and Cliffs’ d.
+              </jats:sec><jats:sec>
+                <jats:title>Results</jats:title>
+                We confirmed that many SE data sets are small and that small experiments run the risk of exhibiting non-normal properties, which can cause problems for analysing families of experiments. For simulations of individual experiments and meta-analyses of families of experiments, <jats:inline-formula><jats:alternatives><jats:tex-math>$$\hat{p}$$</jats:tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML">
+                    <mml:mover>
+                      <mml:mi>p</mml:mi>
+                      <mml:mo>^</mml:mo>
+                    </mml:mover>
+                  </mml:math></jats:alternatives></jats:inline-formula> and Cliff’s d consistently outperformed StdMD in terms of negligible small sample bias. They also had better power for log-normal and Laplace samples, although lower power for normal and gamma samples. Tests based on <jats:inline-formula><jats:alternatives><jats:tex-math>$$\hat{p}$$</jats:tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML">
+                    <mml:mover>
+                      <mml:mi>p</mml:mi>
+                      <mml:mo>^</mml:mo>
+                    </mml:mover>
+                  </mml:math></jats:alternatives></jats:inline-formula> always had better or equal power than tests based on Cliff’s d, and across all but one simulation condition, <jats:inline-formula><jats:alternatives><jats:tex-math>$$\hat{p}$$</jats:tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML">
+                    <mml:mover>
+                      <mml:mi>p</mml:mi>
+                      <mml:mo>^</mml:mo>
+                    </mml:mover>
+                  </mml:math></jats:alternatives></jats:inline-formula> Type 1 error rates were less biased.
+              </jats:sec><jats:sec>
+                <jats:title>Conclusions</jats:title>
+                Using <jats:inline-formula><jats:alternatives><jats:tex-math>$$\hat{p}$$</jats:tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML">
+                    <mml:mover>
+                      <mml:mi>p</mml:mi>
+                      <mml:mo>^</mml:mo>
+                    </mml:mover>
+                  </mml:math></jats:alternatives></jats:inline-formula> is a low-risk option for analysing and meta-analysing data from small sample-size SE randomized experiments. Parametric methods are only preferable if you have prior knowledge of the data distribution.
+              </jats:sec>
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Kitchenham2024
+- Status DOI: TERVERIFIKASI CrossRef

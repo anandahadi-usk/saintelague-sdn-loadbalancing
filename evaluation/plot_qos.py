@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-P5 QoS Publication Figures (300 DPI, IEEE-standard)
+QoS Publication Figures (300 DPI, IEEE-standard)
 Reads from results/processed/qos_*.csv and results/raw/qos_*/
-Generates 6 figures in docs/figures_p5/:
+Generates 6 figures in docs/figures/:
   fig_qos1_throughput.png  — throughput comparison (bar + CI)
   fig_qos2_latency.png     — latency CDF per algorithm (all scenarios)
   fig_qos3_jitter.png      — jitter comparison (bar)
@@ -25,7 +25,7 @@ import numpy as np
 BASE   = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 RAW    = os.path.join(BASE, "results", "raw")
 PROC   = os.path.join(BASE, "results", "processed")
-FIGDIR = os.path.join(BASE, "docs", "figures_p5")
+FIGDIR = os.path.join(BASE, "docs", "figures")
 os.makedirs(FIGDIR, exist_ok=True)
 
 # ── Style ────────────────────────────────────────────────────────────────────
@@ -428,7 +428,7 @@ def fig_qos6_prepost(per_run, qos_all):
 # ══════════════════════════════════════════════════════════════════════════════
 def main():
     print("=" * 60)
-    print("P5 QoS Plot Generator")
+    print("QoS Plot Generator")
     print("=" * 60)
 
     summary    = load_qos_summary()

@@ -1,0 +1,20 @@
+REFERENSI [32] — Kumari2025
+======================================================================
+
+Judul  : Look Ahead Before You Leap: SDN Switch Migration Scheduling for Load Balancing
+Penulis: Kumari, Abha; Sairam, Ashok Singh
+Jurnal : Wireless Personal Communications
+Tahun  : 2024
+DOI    : 10.1007/s11277-024-11056-9
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+Although software-defined networking (SDN) promotes a centralized control plane for better resource management, it suffers from reliability and scalability issues. Consequently, the distributed SDN architecture proposes logically centralized but physically distributed controllers. Each controller manages a subset of the switches in the distributed SDN architecture. However, in real networks, the traffic condition is highly dynamic, which may lead to load imbalance among the controllers if the switch-controller association is static. Within this context, our study advances a novel approach of dynamically configuring switch-to-controller associations to rectify load disparities among controllers. This dynamic association is predicated upon applying short-term traffic forecasts, serving as a predictive tool for anticipating the forthcoming controller load. Our research undertakes a comprehensive examination to ascertain the ideal load parameters for each controller. Subsequently, a proactive load-balancing strategy is established, whereby switches are judiciously reassigned based on load predictions. This predictive load-balancing methodology not only rectifies load imbalances but also reduces the frequency of switch reassignments, thereby mitigating undue network disruptions. Empirical results from our proposed approach reveal a remarkable 90% reduction in switch reassignments compared to a traditional greedy approach. Furthermore, extensive experimentation and comparative performance analyses are undertaken to substantiate the efficacy of our proposed framework rigorously. These analyses collectively underscore the salient advantages of our approach, manifesting in superior network stability, comparable load divergence, and migration cost, when contrasted with the conventional greedy approach.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Kumari2025
+- Status DOI: TERVERIFIKASI CrossRef

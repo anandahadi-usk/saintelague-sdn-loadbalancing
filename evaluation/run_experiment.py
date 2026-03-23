@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # evaluation/run_experiment.py
 """
-P5 Experiment Runner
+Experiment Runner
 Runs all combinations of: scenarios × algorithms × runs
 Uses sudo with SUDO_PASS env var.
 
 Usage:
-  cd /path/to/P5
+  cd /path/to/saintelague-sdn-loadbalancing
   PYTHONPATH=$(pwd) SUDO_PASS=yourpassword \
   nohup venv/bin/python3 evaluation/run_experiment.py \
     --scenario all --runs 20 --yes > logs/experiment.log 2>&1 &
@@ -32,7 +32,7 @@ from config.experiment_config import ALGORITHMS, SCENARIOS
 # ── Paths ────────────────────────────────────────────────────────────────────
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-# Venv must be at P5/venv — run setup.sh to create it
+# Venv must be at project root — run setup.sh to create it
 VENV_PYTHON  = os.path.join(PROJECT_ROOT, 'venv', 'bin', 'python3')
 RYU_BIN      = os.path.join(PROJECT_ROOT, 'venv', 'bin', 'ryu-manager')
 
@@ -180,7 +180,7 @@ def run_single(scenario: str, algo: str, run_id: int, seed: int,
 
 
 def main():
-    parser = argparse.ArgumentParser(description="P5 Experiment Runner")
+    parser = argparse.ArgumentParser(description="Experiment Runner")
     parser.add_argument("--scenario", default="all",
                         choices=list(SCENARIOS.keys()) + ["all"])
     parser.add_argument("--algo", default="all",
@@ -211,7 +211,7 @@ def main():
         for s in scenarios
     )
 
-    log(f"P5 Experiment Runner")
+    log(f"Experiment Runner")
     log(f"Scenarios: {scenarios}")
     log(f"Algorithms: {algos}")
     log(f"Runs: {[run_counts[s] for s in scenarios]}")

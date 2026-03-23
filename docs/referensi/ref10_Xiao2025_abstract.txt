@@ -1,0 +1,20 @@
+REFERENSI [10] — Xiao2025
+======================================================================
+
+Judul  : Improved A* search: A bandwidth allocation algorithm for Linux traffic control based on Hierarchical Token Bucket
+Penulis: Xiao, Huiyao; Jin, Xi; Feng, Zhiwei; Deng, Qingxu; Xia, Changqing
+Jurnal : Journal of Systems Architecture
+Tahun  : 2025
+DOI    : 10.1016/j.sysarc.2025.103461
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+This paper proposes an improved bandwidth allocation algorithm for the Linux Traffic Control (tc) subsystem using Hierarchical Token Bucket (HTB). The work demonstrates that tc-based link shaping can achieve precise proportional bandwidth allocation when the scheduling parameters are correctly configured. In the P5 testbed, server link bandwidths are enforced using Linux tc with tc-netem emulation, making this reference directly applicable to the testbed configuration methodology.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Xiao2025
+- Status DOI: TERVERIFIKASI CrossRef

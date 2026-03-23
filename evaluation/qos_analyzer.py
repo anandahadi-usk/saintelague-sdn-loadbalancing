@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-P5 QoS Analyzer
+QoS Analyzer
 Aggregates per-run QoS metrics from:
   - results/raw/qos_*/qos_metrics_*.csv    → latency, jitter, loss, throughput
   - results/raw/qos_*/flow_timing_*.csv    → flow_setup_ms
@@ -247,7 +247,7 @@ def aggregate_runs(run_results):
 
 def main():
     print("=" * 60)
-    print("P5 QoS Analyzer")
+    print("QoS Analyzer")
     print("=" * 60)
 
     all_run_results = []

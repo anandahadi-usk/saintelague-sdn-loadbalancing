@@ -1,0 +1,20 @@
+REFERENSI [6] — Jain1984
+======================================================================
+
+Judul  : A Quantitative Measure of Fairness and Discrimination for Resource Allocation in Shared Computer Systems
+Penulis: Jain et al. 1984
+Jurnal : 
+Tahun  : 
+DOI    : Tidak ada DOI
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+This foundational technical report introduces the Jain Fairness Index (JFI), a quantitative measure to evaluate fairness in resource allocation. JFI = (sum xi)^2 / (n * sum xi^2) ranges from 1/n (maximally unfair) to 1 (perfectly fair). The measure is continuous, bounded, independent of scale, and applicable to any resource sharing problem including network bandwidth allocation and server load distribution.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Jain1984
+- Status DOI: Tidak ada DOI (buku/tech report/paper lama)

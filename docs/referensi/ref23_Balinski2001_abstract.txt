@@ -1,0 +1,20 @@
+REFERENSI [23] — Balinski2001
+======================================================================
+
+Judul  : Fair Representation: Meeting the Ideal of One Man, One Vote
+Penulis: Balinski & Young 2001
+Jurnal : 
+Tahun  : 
+DOI    : Tidak ada DOI
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+This authoritative monograph proves that the Sainte-Laguë method is the unique divisor apportionment procedure that is unbiased with respect to party size — it neither systematically over-represents large parties (as d'Hondt does) nor small parties (as Adams' method does). Balinski and Young establish this through an axiomatic framework that characterises the space of admissible apportionment methods. Their optimality proof is the mathematical foundation cited in P5 to justify adopting Sainte-Laguë for proportional server load distribution.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Balinski2001
+- Status DOI: Tidak ada DOI (buku/tech report/paper lama)

@@ -1,6 +1,6 @@
 # config/network_config.py
 """
-Network topology configuration for P5.
+Network topology configuration.
 3-server heterogeneous SDN topology.
 """
 

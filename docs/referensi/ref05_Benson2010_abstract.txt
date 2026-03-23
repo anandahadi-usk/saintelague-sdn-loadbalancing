@@ -1,0 +1,20 @@
+REFERENSI [5] — Benson2010
+======================================================================
+
+Judul  : Network traffic characteristics of data centers in the wild
+Penulis: Benson, Theophilus; Akella, Aditya; Maltz, David A.
+Jurnal : Proceedings of the 10th ACM SIGCOMM conference on Internet measurement
+Tahun  : 2010
+DOI    : 10.1145/1879141.1879175
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+This paper presents a large-scale measurement study of traffic patterns in production data center networks. The authors collected and analysed traffic traces from multiple data centres and found highly skewed server utilisation distributions, with a small fraction of servers handling a disproportionate share of traffic — a finding that directly motivates the need for accurate proportional load balancing to avoid server saturation.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Benson2010
+- Status DOI: TERVERIFIKASI CrossRef

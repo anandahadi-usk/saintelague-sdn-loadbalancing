@@ -1,0 +1,20 @@
+REFERENSI [21] — Zhu2023
+======================================================================
+
+Judul  : FFRLI: Fast fault recovery scheme based on link importance for data plane in SDN
+Penulis: Zhu, Zhengbin; Yu, Hong; Liu, Qinrang; Liu, Dongpei; Mei, Bo
+Jurnal : Computer Networks
+Tahun  : 2023
+DOI    : 10.1016/j.comnet.2023.110062
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+This paper proposes a fast fault recovery mechanism for SDN that prioritises critical links and avoids transient forwarding anomalies during rerouting. The work demonstrates that the period immediately following a network reconfiguration event — whether due to fault or policy change — is characterised by temporary routing inconsistencies that degrade application-layer performance. This is directly analogous to the distributional lag observed in P5 after weight change events, validating the practical importance of fast convergence.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Zhu2023
+- Status DOI: TERVERIFIKASI CrossRef

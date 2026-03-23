@@ -1,0 +1,20 @@
+REFERENSI [7] — Ma2024
+======================================================================
+
+Judul  : Synchronizing DDoS detection and mitigation based graph learning with programmable data plane, SDN
+Penulis: Ma, Jie; Su, Wei; Li, Yikun; Peng, Yihua
+Jurnal : Future Generation Computer Systems
+Tahun  : 2024
+DOI    : 10.1016/j.future.2023.12.033
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+This paper proposes a DDoS detection and mitigation framework that leverages programmable SDN data planes for real-time traffic engineering. The work demonstrates that SDN's separation of control and data planes, combined with programmable forwarding rules, enables dynamic reconfiguration of traffic routing policies without service interruption — a property central to the load balancing reconfiguration problem studied in the P5 project.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Ma2024
+- Status DOI: TERVERIFIKASI CrossRef

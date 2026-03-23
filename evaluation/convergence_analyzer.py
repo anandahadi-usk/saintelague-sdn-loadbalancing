@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # evaluation/convergence_analyzer.py
 """
-P5 Convergence Analyzer
+Convergence Analyzer
 Reads flow_decisions CSV files and computes:
   1. MAPE trajectory (per flow, rolling over N-flow window)
   2. Recovery Time: flows and seconds to reach MAPE < threshold after weight change
@@ -242,7 +242,7 @@ def print_summary(df: pd.DataFrame, scenario: str):
 
 def main():
     import argparse
-    parser = argparse.ArgumentParser(description="P5 Convergence Analyzer")
+    parser = argparse.ArgumentParser(description="Convergence Analyzer")
     parser.add_argument("--scenario", default="all",
                         choices=list(SCENARIOS.keys()) + ["all"])
     parser.add_argument("--runs", type=int, default=20)

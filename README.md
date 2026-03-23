@@ -121,10 +121,10 @@ saintelague-sdn-loadbalancing/
 │   └── plot_results.py          # Publication figures
 │
 ├── docs/
-│   ├── figures_p5/              # Publication figures (300 DPI PNG)
+│   ├── figures/              # Publication figures (300 DPI PNG)
 │   ├── paper_draft.md           # Manuscript source (Markdown)
-│   ├── p5_references.bib        # BibTeX references (34 entries, verified DOI)
-│   └── create_figures_p5.py     # Figure generation script
+│   ├── references.bib        # BibTeX references (34 entries, verified DOI)
+│   └── create_figures.py     # Figure generation script
 │
 ├── results/
 │   └── processed/               # Aggregated CSV results (219 runs)
@@ -187,8 +187,8 @@ nohup python3 evaluation/run_experiment.py \
 ### Reproduce figures only (from processed data)
 
 ```bash
-python3 docs/create_figures_p5.py
-# Output: docs/figures_p5/*.png (300 DPI, IEEE standard)
+python3 docs/create_figures.py
+# Output: docs/figures/*.png (300 DPI, IEEE standard)
 ```
 
 ---

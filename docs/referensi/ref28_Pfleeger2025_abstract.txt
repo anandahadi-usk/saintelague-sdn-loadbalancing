@@ -1,0 +1,20 @@
+REFERENSI [28] — Pfleeger2025
+======================================================================
+
+Judul  : Evidence-Based Software Engineering Guidelines Revisited
+Penulis: Pfleeger, Shari Lawrence; Kitchenham, Barbara Ann
+Jurnal : IEEE Transactions on Software Engineering
+Tahun  : 2025
+DOI    : 10.1109/TSE.2025.3526730
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+In 2002, the authors and their colleagues proposed some preliminary guidelines for empirical software engineering research. In this paper, we revisit them. We believe that for the purpose of supporting the development of project-based bespoke software, they still perform reasonably well. However, the worlds of software and software engineering have changed dramatically in the last 25 years. We suggest that new guidelines are needed to respond to changes in software practices, including the possibility of regulation of AI-based software products, and propose the scope of such guidelines.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Pfleeger2025
+- Status DOI: TERVERIFIKASI CrossRef

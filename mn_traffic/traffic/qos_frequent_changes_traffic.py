@@ -30,7 +30,7 @@ class QoSFrequentChangesTrafficGenerator(BaseTrafficGenerator):
         self._phase_lock = threading.Lock()
 
     def _run_traffic_pattern(self):
-        info(f"[P5-QoS-S3] Starting | algo={self.algorithm} run={self.run_id}\n")
+        info(f"[SL-SDN-QoS-S3] Starting | algo={self.algorithm} run={self.run_id}\n")
 
         self._open_qos_csv(self._results_dir)
 
@@ -49,7 +49,7 @@ class QoSFrequentChangesTrafficGenerator(BaseTrafficGenerator):
                             self._current_phase = f"post_change_{self._wc_count}"
                             self._wc_event = 1
                         self.trigger_weight_change(weights, label)
-                        info(f"[P5-QoS-S3] WC#{self._wc_count} at t={self.elapsed():.1f}s → {weights}\n")
+                        info(f"[SL-SDN-QoS-S3] WC#{self._wc_count} at t={self.elapsed():.1f}s → {weights}\n")
                         time.sleep(FLOW_DUR + 2)
                         with self._phase_lock:
                             self._wc_event = 0
@@ -100,7 +100,7 @@ class QoSFrequentChangesTrafficGenerator(BaseTrafficGenerator):
             if t.is_alive():
                 t.join(timeout=8.0)
 
-        info(f"[P5-QoS-S3] Done.\n")
+        info(f"[SL-SDN-QoS-S3] Done.\n")
 
 
 def main():

@@ -1,6 +1,6 @@
 # config/experiment_config.py
 """
-Experiment scenarios and weight change schedules for P5.
+Experiment scenarios and weight change schedules.
 
 3 scenarios:
   S1: Steady-State       — no weight changes, validates baseline equivalence

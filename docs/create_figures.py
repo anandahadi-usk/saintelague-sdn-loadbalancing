@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-P5 Publication Figures Generator — uses ACTUAL experiment results
+Publication Figures Generator — uses ACTUAL experiment results
 IEEE Access Quality: 300 DPI, serif fonts, colorblind-safe palette
 """
 
@@ -15,7 +15,7 @@ import os, csv, glob, statistics
 
 # ── Paths ────────────────────────────────────────────────────────────────────
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT  = os.path.join(BASE, 'docs', 'figures_p5')
+OUT  = os.path.join(BASE, 'docs', 'figures')
 RAW  = os.path.join(BASE, 'results', 'raw')
 os.makedirs(OUT, exist_ok=True)
 
@@ -593,7 +593,7 @@ def fig8_wrr_oscillation():
 # MAIN
 # ════════════════════════════════════════════════════════════════════════════
 if __name__ == '__main__':
-    print('Generating P5 publication figures (300 DPI) — actual experiment data')
+    print('Generating publication figures (300 DPI) — actual experiment data')
     print(f'Output: {OUT}')
     print()
     fig1_topology()

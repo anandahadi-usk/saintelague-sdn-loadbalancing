@@ -1,0 +1,20 @@
+REFERENSI [24] — Gaffke2007
+======================================================================
+
+Judul  : Vector and matrix apportionment problems and separable convex integer optimization
+Penulis: Gaffke, N.; Pukelsheim, F.
+Jurnal : Mathematical Methods of Operations Research
+Tahun  : 2007
+DOI    : 10.1007/s00186-007-0184-7
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+This paper extends the optimisation formulation of apportionment methods to vector and matrix allocation problems, proving that the divisor method framework applies beyond single-dimension proportional representation. The authors show that separable convex integer programs can be solved greedily using quotient-based priority rules — exactly the structure of the Sainte-Laguë scheduling algorithm. This provides the mathematical guarantee that the greedy Q(i) = wi/(2ni+1) selection rule converges to the global optimum proportional allocation.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Gaffke2007
+- Status DOI: TERVERIFIKASI CrossRef

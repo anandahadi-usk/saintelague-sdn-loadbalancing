@@ -1,0 +1,20 @@
+REFERENSI [17] — Bijlwan2026
+======================================================================
+
+Judul  : Deep Reinforcement Learning in Software Defined Networking: A Survey, Research Challenges, and Future Perspectives
+Penulis: Bijlwan, Vijay Prakash; Kumar, Neetesh
+Jurnal : IEEE Communications Surveys &amp; Tutorials
+Tahun  : 2026
+DOI    : 10.1109/COMST.2026.3656733
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+Recent advancements in mobile and internet communication technologies have resulted in the increased complexity and heterogeneity of networking systems. In order to manage these heterogeneous systems more efficiently, there is a requirement for greater intelligence. Since traditional networks with decentralized architecture face challenges in implementing machine learning (ML) techniques to manage the network, the Software Defined Networking (SDN) paradigm offers a solution by decoupling the network’s control functions and data forwarding functions, and centralizing network management through a programmable controller. The centralized controller enables ML techniques to optimize network-wide policies. However, traditional ML techniques, like Reinforcement Learning (RL), face challenges in managing complex networks due to a large state space. Deep Reinforcement Learning (DRL) addresses these issues by combining RL with Deep Learning (DL) that improves the learning efficiency of traditional RL. In this paper, we provide a survey of DRL applications in various SDN domains. First, related work and a brief background of SDN and DRL are provided. Then, we present an overview of existing DRL methods. Further, we systematically review how DRL methods are applied in the SDN from various perspectives, including Traffic Engineering, Quality of Service/Quality of Experience optimization, and Security. We present case studies that highlight the effectiveness of DRL in dynamic network environments, and also analyze the training architecture of DRL in SDN. Finally, we highlight current research challenges, recent advances, and outline future research directions.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: Bijlwan2026
+- Status DOI: TERVERIFIKASI CrossRef

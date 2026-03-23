@@ -1,0 +1,20 @@
+REFERENSI [20] — GarciaMartinez2024
+======================================================================
+
+Judul  : BGP convergence in an MRAI-free Internet
+Penulis: García-Martínez, Alberto; Torres, Pedro Rodrigues; Bagnulo, Marcelo
+Jurnal : Computer Networks
+Tahun  : 2024
+DOI    : 10.1016/j.comnet.2024.110183
+
+ABSTRAK / KETERANGAN
+----------------------------------------------------------------------
+This paper measures BGP routing convergence behaviour after policy changes in modern Internet topology, finding that convergence time depends strongly on route propagation paths and timer configurations. The key finding relevant to P5 is that even sub-second convergence delays cause measurable traffic disruption and packet reordering at the receiving end. This motivates the P5 research question: not just whether convergence eventually occurs, but how quickly and sustainably distributional accuracy is achieved after a weight change.
+
+CATATAN SITASI
+----------------------------------------------------------------------
+Referensi ini digunakan dalam:
+- Paper P5 IEEE Access: docs/paper_p5_ieee.docx  
+- BAB Disertasi P5: docs/bab5_p5_disertasi.docx
+- BibTeX key: GarciaMartinez2024
+- Status DOI: TERVERIFIKASI CrossRef

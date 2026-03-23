@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-P5 QoS Experiment Runner
+QoS Experiment Runner
 Runs focused QoS experiments (5 runs × 4 algorithms × 3 scenarios = 60 total).
 Collects: throughput, latency, jitter, packet loss, flow_setup_ms.
 
@@ -139,7 +139,7 @@ def run_one(scenario: str, algo: str, run_id: int, cfg: dict, sudo_pass: str) ->
 
 
 def main():
-    parser = argparse.ArgumentParser(description="P5 QoS Experiment Runner")
+    parser = argparse.ArgumentParser(description="QoS Experiment Runner")
     parser.add_argument("--scenario", default="all",
                         choices=["all", "steady", "single_change", "frequent_changes"])
     parser.add_argument("--algo", default="all")
@@ -156,7 +156,7 @@ def main():
     algos     = [args.algo]     if args.algo     != "all" else ALGOS
 
     total = sum(args.runs for _ in scenarios for _ in algos)
-    log(f"P5 QoS Experiment Runner")
+    log(f"QoS Experiment Runner")
     log(f"Scenarios: {scenarios}")
     log(f"Algorithms: {algos}")
     log(f"Runs per combo: {args.runs}")

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # evaluation/plot_results.py
 """
-P5 Figure Generator — Publication-quality plots for IEEE Access
+Figure Generator — Publication-quality plots
 Generates 4 key figures:
   Fig 1: MAPE trajectory post-change (S2 single change) — THE KEY FIGURE
   Fig 2: Recovery flows boxplot (S2 + S3)
@@ -274,12 +274,12 @@ def fig_steady_mape():
 
 if __name__ == "__main__":
     import argparse
-    parser = argparse.ArgumentParser(description="P5 Figure Generator")
+    parser = argparse.ArgumentParser(description="Figure Generator")
     parser.add_argument("--fig", default="all",
                         choices=["1","2","3","4","5","all"])
     args = parser.parse_args()
 
-    print("Generating P5 publication figures...")
+    print("Generating publication figures...")
     if args.fig in ("1","all"):
         fig_mape_trajectory("single_change")
         fig_mape_trajectory("frequent_changes")

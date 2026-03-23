@@ -1,6 +1,6 @@
 # mn_traffic/traffic/base_traffic.py
 """
-Base traffic generator for P5.
+Base traffic generator.
 Manages Mininet hosts, iperf3 flows, REST API weight change calls.
 """
 import os
@@ -58,7 +58,7 @@ class P5Topology(Topo):
 
 class BaseTrafficGenerator:
     """
-    Base class for P5 traffic generators.
+    Base class for traffic generators.
     Subclasses implement _run_traffic_pattern().
     """
 
@@ -129,13 +129,13 @@ class BaseTrafficGenerator:
             )
             resp = json.loads(result.stdout)
             if resp.get("ok"):
-                info(f"[P5] Weight change triggered: {new_weights}  label={label}\n")
+                info(f"[SL-SDN] Weight change triggered: {new_weights}  label={label}\n")
                 return True
             else:
-                info(f"[P5] Weight change FAILED: {resp}\n")
+                info(f"[SL-SDN] Weight change FAILED: {resp}\n")
                 return False
         except Exception as e:
-            info(f"[P5] Weight change error: {e}\n")
+            info(f"[SL-SDN] Weight change error: {e}\n")
             return False
 
     def get_status(self) -> dict:
@@ -239,10 +239,10 @@ class BaseTrafficGenerator:
                 rtt_max_ms  = round(sender.get("max_rtt",  0) / 1000, 4)
             # iperf3 error field (e.g. "unable to connect to server")
             if data.get("error"):
-                info(f"[P5-QoS] iperf3 error on {getattr(client_host,'name','?')}:{port} "
+                info(f"[SL-SDN-QoS] iperf3 error on {getattr(client_host,'name','?')}:{port} "
                      f"→ {data['error']}\n")
         except Exception as e:
-            info(f"[P5-QoS] iperf3 parse error on {getattr(client_host,'name','?')}:{port} "
+            info(f"[SL-SDN-QoS] iperf3 parse error on {getattr(client_host,'name','?')}:{port} "
                  f"({e}) raw={repr(out[:200]) if 'out' in dir() else 'N/A'}\n")
 
         # Measure jitter/latency via ping (after flow rule is installed)
@@ -375,7 +375,7 @@ class BaseTrafficGenerator:
 
         # Allow time for controller to connect
         time.sleep(3)
-        info(f"[P5] Network ready | algo={self.algorithm} run={self.run_id}\n")
+        info(f"[SL-SDN] Network ready | algo={self.algorithm} run={self.run_id}\n")
 
     def _open_qos_csv(self, results_dir: str):
         """Open QoS metrics CSV for this run."""
@@ -426,7 +426,7 @@ class BaseTrafficGenerator:
         raise NotImplementedError
 
 
-def get_base_parser(description: str = "P5 Traffic Generator") -> argparse.ArgumentParser:
+def get_base_parser(description: str = "Traffic Generator") -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description=description)
     p.add_argument("--duration",  type=int,  default=90)
     p.add_argument("--seed",      type=int,  default=42)
