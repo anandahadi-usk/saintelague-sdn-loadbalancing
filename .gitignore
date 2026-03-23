@@ -44,6 +44,17 @@ desktop.ini
 .env
 *.env
 
-# Temporary
+# Manuscript draft — do not publish until paper is accepted
+docs/paper_draft.md
+
+# Internal generator scripts — not needed for reproducibility
+docs/generate_*.py
+docs/insert_*.py
+docs/p5_eq.py
+docs/bab_*.md
+
+# Temporary / archive
 *.tmp
 *.bak
+*.zip
+results/archive/

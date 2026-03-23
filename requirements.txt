@@ -1,0 +1,45 @@
+# Sainte-Laguë SDN Load Balancing — Python Dependencies
+# Python 3.8–3.11 required (Ryu is incompatible with Python 3.12+)
+#
+# Install:
+#   python3.8 -m venv venv
+#   venv/bin/pip install --upgrade pip wheel setuptools
+#   venv/bin/pip install -r requirements.txt
+
+# ── Build tools ───────────────────────────────────────────────────────────────
+wheel>=0.38
+setuptools>=65.0
+
+# ── Ryu SDN Controller ────────────────────────────────────────────────────────
+# eventlet MUST be pinned — newer versions break Ryu's hub.sleep()
+eventlet==0.30.2
+ryu==4.34
+WebOb>=1.8,<2.0
+oslo.config>=8.0,<10.0
+oslo.i18n>=5.0
+pbr>=5.0
+netaddr>=0.8
+msgpack>=1.0
+tinyrpc>=1.1
+Routes>=2.5
+dnspython>=1.16,<2.0
+
+# ── Networking / HTTP ─────────────────────────────────────────────────────────
+requests>=2.28,<3.0
+
+# ── Scientific Computing ──────────────────────────────────────────────────────
+numpy>=1.21,<2.0
+pandas>=1.5,<3.0
+scipy>=1.9,<2.0
+
+# ── Statistical Analysis ──────────────────────────────────────────────────────
+pingouin>=0.5.3        # Wilcoxon, effect sizes
+
+# ── Plotting & Visualisation ──────────────────────────────────────────────────
+matplotlib>=3.5,<4.0
+seaborn>=0.12,<1.0
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+loguru>=0.6.0          # Structured logging
+tqdm>=4.64.0           # Progress bars
+pyyaml>=6.0            # Config files
