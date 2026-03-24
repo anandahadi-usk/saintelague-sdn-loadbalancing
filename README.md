@@ -140,23 +140,45 @@ saintelague-sdn-loadbalancing/
 
 ## Installation
 
-### Prerequisites
-
-```bash
-# System dependencies
-sudo apt install python3.8 python3-pip mininet openvswitch-switch
-
-# Ryu SDN controller
-pip install ryu==4.34 eventlet==0.33.3 msgpack==1.0.7
-```
-
-### Python dependencies
+### Option A — Automated (recommended)
 
 ```bash
 git clone https://github.com/anandahadi-usk/saintelague-sdn-loadbalancing.git
 cd saintelague-sdn-loadbalancing
+bash setup.sh
+```
+
+`setup.sh` automatically installs all system packages (Mininet, OVS, iperf3, Python 3.8),
+creates the virtual environment, and installs all Python dependencies.
+Supports Ubuntu 20.04 / 22.04 / 24.04. Options:
+- `bash setup.sh --dry-run` — check requirements only, no changes
+- `bash setup.sh --skip-apt` — skip system packages, only create venv
+
+### Option B — Manual
+
+```bash
+# Step 1: System packages (Mininet cannot be installed via pip)
+sudo apt install python3.8 python3.8-venv mininet openvswitch-switch iperf3
+
+# Step 2: Clone and create venv
+git clone https://github.com/anandahadi-usk/saintelague-sdn-loadbalancing.git
+cd saintelague-sdn-loadbalancing
+python3.8 -m venv venv
+source venv/bin/activate
+
+# Step 3: Python dependencies
+pip install --upgrade pip wheel setuptools
 pip install -r requirements.txt
 ```
+
+### Verify installation
+
+```bash
+# Quick end-to-end test (~30 seconds, requires sudo)
+SUDO_PASS=your_password bash test_quick.sh
+```
+
+Expected output: `SUCCESS: Pipeline validated!`
 
 ---
 

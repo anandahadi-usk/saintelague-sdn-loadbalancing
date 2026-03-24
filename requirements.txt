@@ -1,7 +1,14 @@
 # Sainte-Laguë SDN Load Balancing — Python Dependencies
 # Python 3.8–3.11 required (Ryu is incompatible with Python 3.12+)
 #
-# Install:
+# IMPORTANT: Before running pip install, install these system packages first:
+#   sudo apt install python3.8 python3.8-venv mininet openvswitch-switch iperf3
+#
+# Mininet cannot be installed via pip — it requires Linux kernel modules.
+# Use apt (above) or run the automated setup script:
+#   bash setup.sh
+#
+# Manual install (after apt step above):
 #   python3.8 -m venv venv
 #   venv/bin/pip install --upgrade pip wheel setuptools
 #   venv/bin/pip install -r requirements.txt
@@ -43,3 +50,12 @@ seaborn>=0.12,<1.0
 loguru>=0.6.0          # Structured logging
 tqdm>=4.64.0           # Progress bars
 pyyaml>=6.0            # Config files
+
+# ── System dependencies (NOT installed via pip) ───────────────────────────────
+# The following must be installed via apt BEFORE running pip install:
+#   sudo apt install mininet openvswitch-switch iperf3
+#
+# Tested versions:
+#   Mininet 2.3.0  (from Ubuntu apt)
+#   Open vSwitch   2.17.x
+#   iperf3         3.x
