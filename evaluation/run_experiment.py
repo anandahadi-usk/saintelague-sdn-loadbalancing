@@ -151,10 +151,25 @@ def run_single(scenario: str, algo: str, run_id: int, seed: int,
         stdout=ryu_log, stderr=subprocess.STDOUT,
     )
 
-    # Wait for Ryu to be ready
-    time.sleep(4)
-    if ryu_proc.poll() is not None:
-        log(f"ERROR: Ryu exited early for {scenario}/{algo}/run{run_id}")
+    # Wait for Ryu to be ready — poll until port 6653 is listening (up to 15 s)
+    import socket as _sock
+    ryu_ready = False
+    for _ in range(15):
+        time.sleep(1)
+        if ryu_proc.poll() is not None:
+            log(f"ERROR: Ryu exited early for {scenario}/{algo}/run{run_id}")
+            ryu_log.close()
+            return False
+        try:
+            with _sock.create_connection(("127.0.0.1", 6653), timeout=0.5):
+                ryu_ready = True
+                break
+        except OSError:
+            pass   # not ready yet
+
+    if not ryu_ready:
+        log(f"ERROR: Ryu not listening on port 6653 after 15s — {scenario}/{algo}/run{run_id}")
+        ryu_proc.kill()
         ryu_log.close()
         return False
 
@@ -219,7 +234,20 @@ def run_single(scenario: str, algo: str, run_id: int, seed: int,
         log(f"OK: {scenario}/{algo}/run{run_id} — {n_decisions} flow decisions")
         return True
     else:
-        log(f"WARN: {scenario}/{algo}/run{run_id} — CSV missing or empty")
+        # Detailed diagnostic to help identify root cause
+        if not os.path.exists(csv_file):
+            log(f"WARN: {scenario}/{algo}/run{run_id} — CSV not found at {csv_file}")
+            log(f"      Likely cause: Ryu failed to start (port conflict) or used wrong RESULTS_DIR")
+            # Check if file landed in fallback path
+            fallback = os.path.join("/tmp/p5_results",
+                f"flow_decisions_{scenario}_{algo}_run{run_id:02d}.csv")
+            if os.path.exists(fallback):
+                log(f"      Found in fallback /tmp — RESULTS_DIR env not set correctly")
+        else:
+            size = os.path.getsize(csv_file)
+            log(f"WARN: {scenario}/{algo}/run{run_id} — CSV empty ({size} bytes)")
+            log(f"      Likely cause: Mininet did not connect to controller, or traffic crashed early")
+            log(f"      Check log: {log_file}")
         return False
 
 
