@@ -14,8 +14,42 @@ import random
 import csv
 import statistics
 
-# Mininet is system-installed
-sys.path.insert(0, '/usr/lib/python3/dist-packages')
+# Mininet is system-installed — not in venv.
+# Search for it in common locations so this works across Ubuntu versions.
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+def _add_mininet_path():
+    """Add the Mininet package directory to sys.path."""
+    # 1. Use path saved by setup.sh (most reliable)
+    _hint = os.path.join(_PROJECT_ROOT, ".mininet_path")
+    if os.path.exists(_hint):
+        _p = open(_hint).read().strip()
+        if _p and _p not in sys.path:
+            sys.path.insert(0, _p)
+            return
+
+    # 2. Try common system locations
+    for _p in [
+        "/usr/lib/python3/dist-packages",
+        "/usr/local/lib/python3/dist-packages",
+        "/usr/lib/python3.8/dist-packages",
+        "/usr/lib/python3.10/dist-packages",
+        "/usr/lib/python3.12/dist-packages",
+    ]:
+        if os.path.isdir(os.path.join(_p, "mininet")):
+            if _p not in sys.path:
+                sys.path.insert(0, _p)
+            return
+
+    # 3. Ask Python itself (catches pip-installed locations)
+    import importlib.util
+    _spec = importlib.util.find_spec("mininet")
+    if _spec and _spec.origin:
+        _p = os.path.dirname(os.path.dirname(_spec.origin))
+        if _p not in sys.path:
+            sys.path.insert(0, _p)
+
+_add_mininet_path()
 
 from mininet.net import Mininet
 from mininet.node import OVSSwitch, RemoteController

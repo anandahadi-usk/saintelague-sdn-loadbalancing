@@ -204,39 +204,98 @@ fi
 # ────────────────────────────────────────────────────────────────────────────
 step "7. Mininet verification"
 
-# Mininet MUST come from the system package (apt).
-# It cannot be installed via pip into a venv — the pip package is a stub
-# and lacks the kernel modules, OVS bridges, and tc tools required for
-# network emulation. The traffic scripts add the system path at runtime
-# via: sys.path.insert(0, '/usr/lib/python3/dist-packages')
+# Mininet is accessed at runtime via sys.path — it does not need to be
+# inside the venv. The traffic scripts add the system path automatically:
+#   sys.path.insert(0, '/usr/lib/python3/dist-packages')
 #
-# DO NOT run: pip install mininet  (inside or outside venv)
+# Installation options (in order of preference):
+#   1. sudo apt install mininet        ← recommended
+#   2. pip install mininet             ← also works (installs Python files)
+#      Then: sudo apt install mininet  ← still needed for mn binary + OVS
+#
+# The setup checks for the Python package and the mn binary separately.
 
-MN_SYSTEM_DIR="/usr/lib/python3/dist-packages/mininet"
+# Find Mininet Python package — check all common locations
+MN_PYTHON_PATH=""
+for candidate in \
+    "/usr/lib/python3/dist-packages/mininet" \
+    "/usr/local/lib/python3/dist-packages/mininet" \
+    "/usr/lib/python3.8/dist-packages/mininet" \
+    "/usr/lib/python3.10/dist-packages/mininet" \
+    "/usr/lib/python3.12/dist-packages/mininet" \
+    "$HOME/.local/lib/python3.8/site-packages/mininet" \
+    "$HOME/.local/lib/python3.10/site-packages/mininet" \
+    "$HOME/.local/lib/python3.12/site-packages/mininet" \
+    "$(python3 -c "import sys; print([p for p in sys.path if 'dist-packages' in p or 'site-packages' in p][0] if [p for p in sys.path if 'dist-packages' in p or 'site-packages' in p] else '')" 2>/dev/null)/mininet"
+do
+    if [[ -d "$candidate" ]]; then
+        MN_PYTHON_PATH="$candidate"
+        break
+    fi
+done
 
-if [[ -d "$MN_SYSTEM_DIR" ]]; then
+# Also try: ask Python directly
+if [[ -z "$MN_PYTHON_PATH" ]]; then
+    MN_PYTHON_PATH=$(python3 -c "
+import sys, os
+# Add common system paths
+for p in ['/usr/lib/python3/dist-packages', '/usr/local/lib/python3/dist-packages']:
+    if p not in sys.path: sys.path.insert(0, p)
+try:
+    import mininet
+    print(os.path.dirname(mininet.__file__))
+except ImportError:
+    pass
+" 2>/dev/null)
+fi
+
+# Check mn binary separately
+MN_BIN=$(command -v mn 2>/dev/null)
+MN_BIN_VER=$($MN_BIN --version 2>/dev/null | head -1 || echo "")
+
+if [[ -n "$MN_PYTHON_PATH" ]]; then
     MN_VER=$(python3 -c "
 import sys
-sys.path.insert(0, '/usr/lib/python3/dist-packages')
+sys.path.insert(0, '$(dirname "$MN_PYTHON_PATH")')
 import mininet
-print(mininet.VERSION)" 2>/dev/null || echo "unknown")
-    ok "Mininet system package found (version: $MN_VER)"
-    info "  Location: $MN_SYSTEM_DIR"
-    info "  Note: Mininet is NOT installed in the venv — this is correct."
-    info "        Traffic scripts use sys.path to access it at runtime."
+print(getattr(mininet, 'VERSION', 'unknown'))" 2>/dev/null || echo "unknown")
+    ok "Mininet Python package found (version: $MN_VER)"
+    info "  Location: $MN_PYTHON_PATH"
+    if [[ -n "$MN_BIN" ]]; then
+        ok "Mininet binary: $MN_BIN  ($MN_BIN_VER)"
+    else
+        warn "mn binary not found — run: sudo apt install mininet"
+    fi
+    info "  Note: Mininet is NOT inside the venv — this is correct."
+    info "        Traffic scripts access it at runtime via sys.path."
+
+    # Write the correct path to a config file so traffic scripts can use it
+    echo "$(dirname "$MN_PYTHON_PATH")" > "$PROJECT_DIR/.mininet_path"
+    info "  Mininet path saved to .mininet_path for runtime use."
+
+elif [[ -n "$MN_BIN" ]]; then
+    # mn binary exists but Python package not found in standard paths
+    warn "mn binary found ($MN_BIN_VER) but Python package location unknown."
+    warn "Trying pip install mininet to add Python bindings..."
+    if [[ "$DRY_RUN" == "true" ]]; then
+        info "  [dry-run] Would run: pip install mininet"
+    else
+        pip install mininet -q 2>/dev/null && \
+            ok "Mininet Python bindings installed via pip" || \
+            warn "pip install mininet failed — experiment may still work if mn binary is functional"
+    fi
 else
-    err "Mininet system package not found!"
-    err "Install with: sudo apt install mininet"
-    err "DO NOT use: pip install mininet  (that is a non-functional stub)"
+    err "Mininet not found! Install with:"
+    err "  sudo apt install mininet"
     $DRY_RUN || exit 1
 fi
 
-# Warn if mininet stub is accidentally installed in venv
+# Warn if mininet is accidentally installed inside venv (can shadow system package)
 if "$VENV_DIR/bin/python3" -c "import mininet" 2>/dev/null; then
     VENV_MN=$("$VENV_DIR/bin/python3" -c "import mininet; print(mininet.__file__)" 2>/dev/null)
-    if [[ "$VENV_MN" == *"venv"* ]]; then
-        warn "Mininet stub detected inside venv: $VENV_MN"
-        warn "This will cause ImportError at runtime. Remove it with:"
+    if [[ "$VENV_MN" == *"$VENV_DIR"* ]]; then
+        warn "Mininet detected INSIDE venv: $VENV_MN"
+        warn "This may shadow the system package. Remove with:"
         warn "  $VENV_DIR/bin/pip uninstall mininet -y"
     fi
 fi
