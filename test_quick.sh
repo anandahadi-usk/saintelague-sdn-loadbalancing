@@ -32,12 +32,13 @@ echo "============================================"
 echo " Quick Test — saintelague / steady / run1"
 echo "============================================"
 
-# Cleanup
+# Cleanup — kill by name AND by port (covers all Ryu startup methods)
 echo "[1/5] Cleaning up..."
-sudo pkill -f ryu-manager 2>/dev/null || true
+sudo pkill -9 -f ryu-manager 2>/dev/null || true
+sudo fuser -k 6653/tcp 2>/dev/null || true
 sudo pkill -f iperf3 2>/dev/null || true
 sudo mn --clean 2>/dev/null || true
-sleep 2
+sleep 3
 
 # Prepare output dir
 RESULTS_DIR=$PROJECT/results/raw/steady_saintelague_run01
@@ -107,8 +108,9 @@ else
     exit 1
 fi
 
-# Cleanup
+# Final cleanup — ensure port 6653 is free for next run
 kill $RYU_PID 2>/dev/null || true
+sudo fuser -k 6653/tcp 2>/dev/null || true
 sudo pkill -f iperf3 2>/dev/null || true
 sudo mn --clean 2>/dev/null || true
 

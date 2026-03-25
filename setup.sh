@@ -88,7 +88,8 @@ APT_PKGS=(
     "mininet"
     "openvswitch-switch"
     "iperf3"
-    "curl"
+    "psmisc"       # provides fuser — needed to kill processes by port (fuser -k 6653/tcp)
+    "net-tools"    # provides netstat — port diagnostics
     "git"
     "build-essential"
     "libffi-dev"

@@ -85,29 +85,40 @@ def kill_existing(sudo_pass: str = ""):
 
     Safe to call multiple times. Pass sudo_pass for reliable cleanup.
     """
-    _sudo("pkill -f ryu-manager",  sudo_pass)
+    # Step 1: Kill by process name (catches ryu-manager binary)
+    _sudo("pkill -f ryu-manager",    sudo_pass)
     _sudo("pkill -9 -f ryu-manager", sudo_pass)
-    _sudo("pkill -f iperf3",       sudo_pass)
+
+    # Step 2: Kill by port number — most reliable, catches Ryu started as
+    # "python3 /path/ryu-manager" where process name is just "python3"
+    _sudo("fuser -k 6653/tcp 2>/dev/null || true", sudo_pass)
+
+    # Step 3: Kill iperf3 and lingering traffic scripts
+    _sudo("pkill -9 -f iperf3", sudo_pass)
     _sudo("pkill -f 'normal_traffic\\|bursty_traffic\\|flash_crowd\\|steady_traffic'",
           sudo_pass)
+
+    # Step 4: Mininet cleanup
     _sudo("mn --clean", sudo_pass)
     time.sleep(2)
 
-    # Fix file ownership: sudo-run scripts create root-owned files,
-    # which cause "permission denied" when analysis scripts read them later.
+    # Step 5: Fix file ownership (sudo creates root-owned files)
     _current_user = os.getenv('USER') or os.getenv('LOGNAME') or \
                     subprocess.getoutput("id -un").strip() or "root"
     _sudo(f"chown -R {_current_user} {RESULTS_BASE}", sudo_pass)
     _sudo(f"chown -R {_current_user} {LOGS_DIR}",    sudo_pass)
 
-    # Wait until port 6653 is released (TCP TIME_WAIT can hold it briefly)
-    import socket
-    for _ in range(10):
+    # Step 6: Verify port 6653 is actually free before returning
+    import socket as _socket
+    for _attempt in range(15):
+        # First try fuser again if port still occupied
+        if _attempt > 0 and _attempt % 3 == 0:
+            _sudo("fuser -k 6653/tcp 2>/dev/null || true", sudo_pass)
         try:
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            s.bind(("127.0.0.1", 6653))
-            s.close()
+            _s = _socket.socket(_socket.AF_INET, _socket.SOCK_STREAM)
+            _s.setsockopt(_socket.SOL_SOCKET, _socket.SO_REUSEADDR, 1)
+            _s.bind(("127.0.0.1", 6653))
+            _s.close()
             break   # port is free
         except OSError:
             time.sleep(1)
