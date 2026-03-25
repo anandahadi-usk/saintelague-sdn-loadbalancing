@@ -204,14 +204,41 @@ fi
 # ────────────────────────────────────────────────────────────────────────────
 step "7. Mininet verification"
 
-if python3 -c "import mininet" 2>/dev/null; then
-    MN_VER=$(python3 -c "import mininet; print(mininet.VERSION)" 2>/dev/null || echo "unknown")
-    ok "Mininet importable (version: $MN_VER)"
-elif [[ -d /usr/lib/python3/dist-packages/mininet ]]; then
-    ok "Mininet found at /usr/lib/python3/dist-packages/mininet"
+# Mininet MUST come from the system package (apt).
+# It cannot be installed via pip into a venv — the pip package is a stub
+# and lacks the kernel modules, OVS bridges, and tc tools required for
+# network emulation. The traffic scripts add the system path at runtime
+# via: sys.path.insert(0, '/usr/lib/python3/dist-packages')
+#
+# DO NOT run: pip install mininet  (inside or outside venv)
+
+MN_SYSTEM_DIR="/usr/lib/python3/dist-packages/mininet"
+
+if [[ -d "$MN_SYSTEM_DIR" ]]; then
+    MN_VER=$(python3 -c "
+import sys
+sys.path.insert(0, '/usr/lib/python3/dist-packages')
+import mininet
+print(mininet.VERSION)" 2>/dev/null || echo "unknown")
+    ok "Mininet system package found (version: $MN_VER)"
+    info "  Location: $MN_SYSTEM_DIR"
+    info "  Note: Mininet is NOT installed in the venv — this is correct."
+    info "        Traffic scripts use sys.path to access it at runtime."
 else
-    err "Mininet not found! Install with: sudo apt install mininet"
+    err "Mininet system package not found!"
+    err "Install with: sudo apt install mininet"
+    err "DO NOT use: pip install mininet  (that is a non-functional stub)"
     $DRY_RUN || exit 1
+fi
+
+# Warn if mininet stub is accidentally installed in venv
+if "$VENV_DIR/bin/python3" -c "import mininet" 2>/dev/null; then
+    VENV_MN=$("$VENV_DIR/bin/python3" -c "import mininet; print(mininet.__file__)" 2>/dev/null)
+    if [[ "$VENV_MN" == *"venv"* ]]; then
+        warn "Mininet stub detected inside venv: $VENV_MN"
+        warn "This will cause ImportError at runtime. Remove it with:"
+        warn "  $VENV_DIR/bin/pip uninstall mininet -y"
+    fi
 fi
 
 # Check OVS
