@@ -157,7 +157,7 @@ Supports Ubuntu 20.04 / 22.04 / 24.04. Options:
 ### Option B — Manual
 
 ```bash
-# Step 1: System packages (Mininet cannot be installed via pip)
+# Step 1: System packages (Mininet MUST be installed via apt — NOT pip)
 sudo apt install python3.8 python3.8-venv mininet openvswitch-switch iperf3
 
 # Step 2: Clone and create venv
@@ -170,6 +170,13 @@ source venv/bin/activate
 pip install --upgrade pip wheel setuptools
 pip install -r requirements.txt
 ```
+
+> **Important — Mininet and venv:**
+> Mininet is a system package (`/usr/lib/python3/dist-packages/mininet/`) and
+> is **not available inside the virtual environment**.
+> The traffic scripts automatically add the system path — no extra action needed.
+> Do **not** run `pip install mininet` inside the venv; it will install an
+> incompatible stub package and cause `ImportError` at runtime.
 
 ### Verify installation
 
@@ -265,6 +272,31 @@ nohup python3 evaluation/run_experiment.py \
     > logs/full_experiment.log 2>&1 &
 ```
 
+### Re-run or recovering from a failed experiment
+
+If a previous run was interrupted or failed, clean up all processes first
+to prevent port conflicts and OVS bridge corruption:
+
+```bash
+# Step 1: Kill all leftover processes
+sudo pkill -9 -f ryu-manager
+sudo pkill -f iperf3
+sudo mn --clean
+sleep 3
+
+# Step 2: Verify port 6653 is free
+sudo ss -tlnp | grep 6653   # should return nothing
+
+# Step 3: Re-run (existing successful runs are preserved, failed ones are retried)
+PYTHONPATH=. SUDO_PASS=your_password \
+python3 evaluation/run_experiment.py \
+    --scenario all --runs 20 --yes \
+    > logs/rerun.log 2>&1
+```
+
+> **Note:** The experiment runner automatically skips runs that already have
+> valid results and only retries failed or missing runs.
+
 ### Reproduce figures only (from processed data)
 
 ```bash
@@ -321,6 +353,43 @@ This repository is part of a research program on adaptive SDN scheduling:
 
 - **This study:** Empirical characterisation of weight-change convergence behaviour
 - **Follow-up (in progress):** PPO-SL-QoS — RL-based convergence acceleration with QoS priority ordering
+
+---
+
+## Troubleshooting
+
+**Experiment fails after a few runs / port 6653 conflict:**
+```bash
+# Full system cleanup before re-running
+sudo pkill -9 -f ryu-manager
+sudo pkill -f iperf3
+sudo mn --clean
+sleep 3
+# Verify port is free (should return nothing)
+sudo ss -tlnp | grep 6653
+```
+
+**`pip install mininet` causes ImportError:**
+```
+Do NOT install mininet via pip. Mininet must come from the system package.
+The codebase already adds /usr/lib/python3/dist-packages to sys.path automatically.
+Fix: pip uninstall mininet  (inside venv if accidentally installed)
+```
+
+**Mininet dirty state after crash:**
+```bash
+sudo mn -c && pkill -f iperf3 && pkill -f ryu-manager
+```
+
+**`No module named 'config'`:**
+```bash
+export PYTHONPATH=$(pwd)
+```
+
+**Ryu eventlet error:**
+```bash
+venv/bin/pip install "eventlet==0.30.2"
+```
 
 ---
 

@@ -62,11 +62,37 @@ def log(msg):
 
 
 def kill_existing():
-    """Kill any leftover ryu-manager or mininet processes."""
+    """
+    Kill leftover processes and verify cleanup before next run.
+
+    Steps:
+      1. Kill ryu-manager, iperf3, any lingering python traffic scripts
+      2. Clean Mininet state (mn --clean)
+      3. Wait for port 6653 to be released (up to 10 s)
+      4. Verify port is free before returning
+
+    Safe to call multiple times. Used before each run and on re-run.
+    """
     os.system("sudo pkill -f ryu-manager 2>/dev/null")
+    os.system("sudo pkill -9 -f ryu-manager 2>/dev/null")
     os.system("sudo pkill -f iperf3 2>/dev/null")
+    os.system("sudo pkill -f 'normal_traffic\\|bursty_traffic\\|flash_crowd' 2>/dev/null")
     os.system("sudo mn --clean 2>/dev/null")
     time.sleep(2)
+
+    # Wait until port 6653 is released (TCP TIME_WAIT can hold it briefly)
+    import socket
+    for _ in range(10):
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            s.bind(("127.0.0.1", 6653))
+            s.close()
+            break   # port is free
+        except OSError:
+            time.sleep(1)   # port still in use, wait
+    else:
+        log("WARN: Port 6653 may still be in use — proceeding anyway")
 
 
 def run_single(scenario: str, algo: str, run_id: int, seed: int,

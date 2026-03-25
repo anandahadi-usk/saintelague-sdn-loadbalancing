@@ -402,13 +402,25 @@ class BaseTrafficGenerator:
             self._qos_csv_writer = None
 
     def _teardown_network(self):
-        """Stop iperf3 servers and Mininet."""
+        """
+        Stop iperf3 servers and Mininet.
+        Handles TCLink / OVS cleanup exceptions gracefully so that
+        a teardown crash does not propagate as a run failure.
+        """
         self._close_qos_csv()
         if self.net:
+            # Kill iperf3 on all server hosts (ignore unresponsive hosts)
             for srv in self.server_hosts:
-                srv.cmd("pkill -f iperf3 2>/dev/null")
+                try:
+                    srv.cmd("pkill -f iperf3 2>/dev/null; true")
+                except Exception:
+                    pass
             time.sleep(1)
-            self.net.stop()
+            try:
+                self.net.stop()
+            except Exception:
+                # TCLink / OVS deletion can fail transiently — fall back to mn --clean
+                os.system("sudo mn --clean 2>/dev/null")
 
     # ── Main entry point ──────────────────────────────────────────────────
 
