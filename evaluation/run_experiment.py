@@ -61,24 +61,42 @@ def log(msg):
     print(f"[{ts}] {msg}", flush=True)
 
 
-def kill_existing():
+def _sudo(cmd: str, sudo_pass: str = "") -> int:
+    """
+    Run a shell command with sudo, passing the password via stdin.
+    Returns the exit code (0 = success). Suppresses stderr.
+    """
+    if sudo_pass:
+        full = f"echo {sudo_pass!r} | sudo -S {cmd} 2>/dev/null"
+    else:
+        full = f"sudo {cmd} 2>/dev/null"
+    return os.system(full)
+
+
+def kill_existing(sudo_pass: str = ""):
     """
     Kill leftover processes and verify cleanup before next run.
 
     Steps:
-      1. Kill ryu-manager, iperf3, any lingering python traffic scripts
-      2. Clean Mininet state (mn --clean)
-      3. Wait for port 6653 to be released (up to 10 s)
-      4. Verify port is free before returning
+      1. Kill ryu-manager, iperf3, and lingering traffic scripts (with password)
+      2. Clean Mininet state via mn --clean
+      3. Fix file ownership: chown results and logs back to current user
+      4. Wait for port 6653 to be released (up to 10 s)
 
-    Safe to call multiple times. Used before each run and on re-run.
+    Safe to call multiple times. Pass sudo_pass for reliable cleanup.
     """
-    os.system("sudo pkill -f ryu-manager 2>/dev/null")
-    os.system("sudo pkill -9 -f ryu-manager 2>/dev/null")
-    os.system("sudo pkill -f iperf3 2>/dev/null")
-    os.system("sudo pkill -f 'normal_traffic\\|bursty_traffic\\|flash_crowd' 2>/dev/null")
-    os.system("sudo mn --clean 2>/dev/null")
+    _sudo("pkill -f ryu-manager",  sudo_pass)
+    _sudo("pkill -9 -f ryu-manager", sudo_pass)
+    _sudo("pkill -f iperf3",       sudo_pass)
+    _sudo("pkill -f 'normal_traffic\\|bursty_traffic\\|flash_crowd\\|steady_traffic'",
+          sudo_pass)
+    _sudo("mn --clean", sudo_pass)
     time.sleep(2)
+
+    # Fix file ownership: sudo-run scripts create root-owned files,
+    # which cause "permission denied" when analysis scripts read them later.
+    _sudo(f"chown -R {os.getenv('USER', 'nanda')} {RESULTS_BASE}", sudo_pass)
+    _sudo(f"chown -R {os.getenv('USER', 'nanda')} {LOGS_DIR}",    sudo_pass)
 
     # Wait until port 6653 is released (TCP TIME_WAIT can hold it briefly)
     import socket
@@ -90,7 +108,7 @@ def kill_existing():
             s.close()
             break   # port is free
         except OSError:
-            time.sleep(1)   # port still in use, wait
+            time.sleep(1)
     else:
         log("WARN: Port 6653 may still be in use — proceeding anyway")
 
@@ -186,7 +204,7 @@ def run_single(scenario: str, algo: str, run_id: int, seed: int,
     ryu_log.close()
     traffic_log.close()
 
-    kill_existing()
+    kill_existing(sudo_pass)
 
     # ── Verify output ────────────────────────────────────────────────────
     csv_file = os.path.join(
@@ -253,7 +271,7 @@ def main():
     os.makedirs(RESULTS_BASE, exist_ok=True)
     os.makedirs(LOGS_DIR, exist_ok=True)
 
-    kill_existing()
+    kill_existing(sudo_pass)
 
     success = fail = 0
     start_time = time.time()
@@ -270,7 +288,7 @@ def main():
                     fail += 1
                     log(f"FAILED: {scenario}/{algo}/run{run_id} — retrying once")
                     time.sleep(5)
-                    kill_existing()
+                    kill_existing(sudo_pass)
                     ok2 = run_single(scenario, algo, run_id, seed + 100, sudo_pass)
                     if ok2:
                         success += 1

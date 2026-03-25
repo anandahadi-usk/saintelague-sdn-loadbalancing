@@ -358,15 +358,29 @@ This repository is part of a research program on adaptive SDN scheduling:
 
 ## Troubleshooting
 
+**`Permission denied` when reading result files:**
+
+This is the most common issue. The traffic generator runs under `sudo`, creating
+result CSV files owned by `root`. When analysis scripts run as a normal user,
+reading those files fails with `Permission denied`.
+
+The experiment runner now automatically fixes this after each run (`chown`),
+but if it persists after a crash, fix it manually:
+```bash
+sudo chown -R $USER:$USER results/ logs/
+```
+
 **Experiment fails after a few runs / port 6653 conflict:**
 ```bash
-# Full system cleanup before re-running
+# Full cleanup (pass your sudo password)
 sudo pkill -9 -f ryu-manager
 sudo pkill -f iperf3
 sudo mn --clean
 sleep 3
 # Verify port is free (should return nothing)
 sudo ss -tlnp | grep 6653
+# Fix file ownership
+sudo chown -R $USER:$USER results/ logs/
 ```
 
 **`pip install mininet` causes ImportError:**
@@ -378,7 +392,8 @@ Fix: pip uninstall mininet  (inside venv if accidentally installed)
 
 **Mininet dirty state after crash:**
 ```bash
-sudo mn -c && pkill -f iperf3 && pkill -f ryu-manager
+sudo mn -c && sudo pkill -f iperf3 && sudo pkill -f ryu-manager
+sudo chown -R $USER:$USER results/ logs/
 ```
 
 **`No module named 'config'`:**
