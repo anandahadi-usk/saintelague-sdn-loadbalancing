@@ -182,6 +182,63 @@ Expected output: `SUCCESS: Pipeline validated!`
 
 ---
 
+## Setting SUDO_PASS
+
+Mininet requires root privileges. This project uses the `SUDO_PASS` environment
+variable to pass the sudo password non-interactively to subprocesses.
+
+**Why `SUDO_PASS`?**
+Mininet traffic generators run inside Linux network namespaces and must be
+launched with `sudo`. The `SUDO_PASS` variable avoids interactive password
+prompts during long automated experiments.
+
+### How to set it
+
+**Option 1 — Inline (one-time, not stored)**
+```bash
+SUDO_PASS=your_sudo_password bash test_quick.sh
+SUDO_PASS=your_sudo_password python3 evaluation/run_experiment.py --scenario all
+```
+
+**Option 2 — Shell session variable (not written to disk)**
+```bash
+read -s -p "Sudo password: " SUDO_PASS && export SUDO_PASS
+# Enter password — it will not be echoed
+```
+
+**Option 3 — `.env` file (local only, never commit)**
+```bash
+echo "SUDO_PASS=your_sudo_password" > .env
+source .env
+```
+> ⚠️ Add `.env` to `.gitignore` — **never commit passwords to version control.**
+
+### Security notes
+
+- `SUDO_PASS` is used only at runtime; it is **never written to any file**
+  by the experiment scripts.
+- Do **not** hardcode your password in any script or config file.
+- If running on a shared machine, prefer Option 2 (session variable) so the
+  password disappears when the terminal closes.
+- The project has been audited: no passwords are stored in source code or
+  committed to this repository.
+
+### Passwordless sudo (alternative for CI/lab environments)
+
+If you prefer not to use `SUDO_PASS`, grant passwordless sudo for Mininet only:
+
+```bash
+# Add to /etc/sudoers via visudo:
+your_username ALL=(ALL) NOPASSWD: /usr/bin/mn, /usr/bin/python3
+```
+
+Then run without `SUDO_PASS`:
+```bash
+python3 evaluation/run_experiment.py --scenario all --yes
+```
+
+---
+
 ## Reproduce Experiments
 
 ### Quick start — single run
@@ -200,6 +257,8 @@ sudo PYTHONPATH=. python3 mn_traffic/traffic/bursty_traffic.py \
 
 ```bash
 # Estimated runtime: ~18 hours on a single machine
+# Replace 'your_password' with your sudo password, or use:
+#   read -s -p "Sudo password: " SUDO_PASS && export SUDO_PASS
 PYTHONPATH=. SUDO_PASS=your_password \
 nohup python3 evaluation/run_experiment.py \
     --scenario all --runs 20 --yes \
