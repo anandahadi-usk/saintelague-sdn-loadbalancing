@@ -22,7 +22,7 @@ class QoSSingleChangeTrafficGenerator(BaseTrafficGenerator):
         )
         self.changes = SCENARIOS["single_change"]["weight_changes"]
         self._results_dir = results_dir or os.path.join(
-            os.path.dirname(__file__), '../../results/raw',
+            os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', 'results', 'raw')),
             f'qos_single_change_{algorithm}_run{run_id:02d}'
         )
         self._current_phase = "pre_change"

@@ -95,8 +95,10 @@ def kill_existing(sudo_pass: str = ""):
 
     # Fix file ownership: sudo-run scripts create root-owned files,
     # which cause "permission denied" when analysis scripts read them later.
-    _sudo(f"chown -R {os.getenv('USER', 'nanda')} {RESULTS_BASE}", sudo_pass)
-    _sudo(f"chown -R {os.getenv('USER', 'nanda')} {LOGS_DIR}",    sudo_pass)
+    _current_user = os.getenv('USER') or os.getenv('LOGNAME') or \
+                    subprocess.getoutput("id -un").strip() or "root"
+    _sudo(f"chown -R {_current_user} {RESULTS_BASE}", sudo_pass)
+    _sudo(f"chown -R {_current_user} {LOGS_DIR}",    sudo_pass)
 
     # Wait until port 6653 is released (TCP TIME_WAIT can hold it briefly)
     import socket
@@ -238,11 +240,12 @@ def run_single(scenario: str, algo: str, run_id: int, seed: int,
         if not os.path.exists(csv_file):
             log(f"WARN: {scenario}/{algo}/run{run_id} — CSV not found at {csv_file}")
             log(f"      Likely cause: Ryu failed to start (port conflict) or used wrong RESULTS_DIR")
-            # Check if file landed in fallback path
-            fallback = os.path.join("/tmp/p5_results",
+            # Check if file landed in controller's fallback path
+            _tmp_fallback = os.path.join(
+                os.environ.get("TMPDIR", "/tmp"), "p5_results",
                 f"flow_decisions_{scenario}_{algo}_run{run_id:02d}.csv")
-            if os.path.exists(fallback):
-                log(f"      Found in fallback /tmp — RESULTS_DIR env not set correctly")
+            if os.path.exists(_tmp_fallback):
+                log(f"      Found in fallback {_tmp_fallback} — RESULTS_DIR env not set correctly")
         else:
             size = os.path.getsize(csv_file)
             log(f"WARN: {scenario}/{algo}/run{run_id} — CSV empty ({size} bytes)")

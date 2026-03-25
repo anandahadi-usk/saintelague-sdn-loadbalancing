@@ -33,7 +33,9 @@ def _add_mininet_path():
         "/usr/lib/python3/dist-packages",
         "/usr/local/lib/python3/dist-packages",
         "/usr/lib/python3.8/dist-packages",
+        "/usr/lib/python3.9/dist-packages",
         "/usr/lib/python3.10/dist-packages",
+        "/usr/lib/python3.11/dist-packages",
         "/usr/lib/python3.12/dist-packages",
     ]:
         if os.path.isdir(os.path.join(_p, "mininet")):
@@ -152,21 +154,22 @@ class BaseTrafficGenerator:
 
     def trigger_weight_change(self, new_weights: list, label: str = "") -> bool:
         """Send POST /api/weights to controller. Returns True on success."""
+        import urllib.request
         payload = json.dumps({"weights": new_weights, "label": label}).encode()
         try:
-            result = subprocess.run(
-                ["curl", "-s", "-X", "POST",
-                 "-H", "Content-Type: application/json",
-                 "-d", payload.decode(),
-                 self._api_url("/api/weights")],
-                capture_output=True, text=True, timeout=5,
+            req = urllib.request.Request(
+                self._api_url("/api/weights"),
+                data=payload,
+                headers={"Content-Type": "application/json"},
+                method="POST",
             )
-            resp = json.loads(result.stdout)
-            if resp.get("ok"):
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                data = json.loads(resp.read().decode())
+            if data.get("ok"):
                 info(f"[SL-SDN] Weight change triggered: {new_weights}  label={label}\n")
                 return True
             else:
-                info(f"[SL-SDN] Weight change FAILED: {resp}\n")
+                info(f"[SL-SDN] Weight change FAILED: {data}\n")
                 return False
         except Exception as e:
             info(f"[SL-SDN] Weight change error: {e}\n")
@@ -174,12 +177,10 @@ class BaseTrafficGenerator:
 
     def get_status(self) -> dict:
         """GET /api/status from controller."""
+        import urllib.request
         try:
-            result = subprocess.run(
-                ["curl", "-s", self._api_url("/api/status")],
-                capture_output=True, text=True, timeout=3,
-            )
-            return json.loads(result.stdout)
+            with urllib.request.urlopen(self._api_url("/api/status"), timeout=3) as resp:
+                return json.loads(resp.read().decode())
         except Exception:
             return {}
 

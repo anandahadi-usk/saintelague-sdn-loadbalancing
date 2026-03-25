@@ -85,7 +85,11 @@ class P5LoadBalancer(app_manager.RyuApp):
         self.algo_name   = os.environ.get("ALGO",        "saintelague").lower()
         self.run_id      = int(os.environ.get("RUN_ID",   "1"))
         self.scenario    = os.environ.get("SCENARIO",    "steady")
-        self.results_dir = os.environ.get("RESULTS_DIR", "/tmp/p5_results")
+        _default_results = os.path.join(
+            os.path.abspath(os.path.join(os.path.dirname(__file__), '..')),
+            "results", "raw", "default_run"
+        )
+        self.results_dir = os.environ.get("RESULTS_DIR", _default_results)
 
         os.makedirs(self.results_dir, exist_ok=True)
 

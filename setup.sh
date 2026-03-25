@@ -221,10 +221,14 @@ for candidate in \
     "/usr/lib/python3/dist-packages/mininet" \
     "/usr/local/lib/python3/dist-packages/mininet" \
     "/usr/lib/python3.8/dist-packages/mininet" \
+    "/usr/lib/python3.9/dist-packages/mininet" \
     "/usr/lib/python3.10/dist-packages/mininet" \
+    "/usr/lib/python3.11/dist-packages/mininet" \
     "/usr/lib/python3.12/dist-packages/mininet" \
     "$HOME/.local/lib/python3.8/site-packages/mininet" \
+    "$HOME/.local/lib/python3.9/site-packages/mininet" \
     "$HOME/.local/lib/python3.10/site-packages/mininet" \
+    "$HOME/.local/lib/python3.11/site-packages/mininet" \
     "$HOME/.local/lib/python3.12/site-packages/mininet" \
     "$(python3 -c "import sys; print([p for p in sys.path if 'dist-packages' in p or 'site-packages' in p][0] if [p for p in sys.path if 'dist-packages' in p or 'site-packages' in p] else '')" 2>/dev/null)/mininet"
 do

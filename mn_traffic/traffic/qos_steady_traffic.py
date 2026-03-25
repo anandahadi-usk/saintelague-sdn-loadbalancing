@@ -20,7 +20,7 @@ class QoSSteadyTrafficGenerator(BaseTrafficGenerator):
             algorithm=algorithm, run_id=run_id,
         )
         self._results_dir = results_dir or os.path.join(
-            os.path.dirname(__file__), '../../results/raw',
+            os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', 'results', 'raw')),
             f'qos_steady_{algorithm}_run{run_id:02d}'
         )
 
