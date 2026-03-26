@@ -100,7 +100,10 @@ def kill_existing(sudo_pass: str = ""):
 
     # Step 4: Mininet cleanup
     _sudo("mn --clean", sudo_pass)
-    time.sleep(2)
+    # Extra OVS cleanup to prevent state accumulation across runs
+    # (especially important on VMs where OVS teardown is slower)
+    _sudo("ovs-vsctl list-br 2>/dev/null | xargs -r -n1 ovs-vsctl del-br", sudo_pass)
+    time.sleep(3)   # 3s instead of 2s — gives OVS time to release kernel resources
 
     # Step 5: Fix file ownership (sudo creates root-owned files)
     _current_user = os.getenv('USER') or os.getenv('LOGNAME') or \
@@ -215,7 +218,10 @@ def run_single(scenario: str, algo: str, run_id: int, seed: int,
         traffic_proc.stdin.write(f"{sudo_pass}\n".encode())
         traffic_proc.stdin.flush()
 
-    timeout = duration + 60  # generous timeout
+    # Buffer: 120s extra for VMs and slow machines (OVS state accumulation
+    # causes each run to be slightly slower than the previous one).
+    # On bare metal 60s is enough; on VMs 120s is safer.
+    timeout = duration + 120
     try:
         traffic_proc.wait(timeout=timeout)
     except subprocess.TimeoutExpired:
