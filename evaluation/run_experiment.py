@@ -220,17 +220,39 @@ def run_single(scenario: str, algo: str, run_id: int, seed: int,
         traffic_proc.wait(timeout=timeout)
     except subprocess.TimeoutExpired:
         log(f"TIMEOUT: {scenario}/{algo}/run{run_id}")
-        traffic_proc.kill()
+        # Traffic process runs as root (via sudo -S) so unprivileged kill()
+        # raises PermissionError. Use sudo kill instead.
+        try:
+            traffic_proc.kill()
+        except PermissionError:
+            # Root process — must use sudo to kill it
+            _sudo(f"kill -9 {traffic_proc.pid}", sudo_pass)
+            try:
+                traffic_proc.wait(timeout=5)
+            except Exception:
+                pass
 
     # ── Cleanup ──────────────────────────────────────────────────────────
-    ryu_proc.terminate()
+    # Ryu runs without sudo so terminate() works directly
     try:
+        ryu_proc.terminate()
         ryu_proc.wait(timeout=10)
     except subprocess.TimeoutExpired:
-        ryu_proc.kill()
+        try:
+            ryu_proc.kill()
+        except Exception:
+            _sudo(f"kill -9 {ryu_proc.pid}", sudo_pass)
+    except Exception:
+        pass
 
-    ryu_log.close()
-    traffic_log.close()
+    try:
+        ryu_log.close()
+    except Exception:
+        pass
+    try:
+        traffic_log.close()
+    except Exception:
+        pass
 
     kill_existing(sudo_pass)
 
