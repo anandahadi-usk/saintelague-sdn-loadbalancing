@@ -71,8 +71,8 @@ over all competitors (Cliff's δ = 1.000).
 
 | Algorithm | MAPE (%) | τ (flows) | Sustained? | Cliff's δ vs SL |
 |-----------|----------|-----------|------------|-----------------|
-| **Sainte-Laguë** | **3.61 ± 0.88** | **88.8** | ✅ **107 flows** | — |
-| IWRR | 11.07 ± 1.08 | ∞ | ❌ | 0.625 (large) |
+| **Sainte-Laguë** | **4.76 ± 0.17** | **88.8** | ✅ **107 flows** | — |
+| IWRR | 11.07 ± 1.08 | ∞ | ❌ | 1.000 (complete) |
 | WRR | 22.11 ± 0.91 | ∞ | ❌ | 1.000 (complete) |
 | WLC | 50.47 ± 0.94 | 29.1* | ❌ | 1.000 (complete) |
 
@@ -82,10 +82,14 @@ All comparisons: p < 0.0001 (Mann-Whitney U), |δ| ≥ 0.625
 
 ### QoS Cascade from WLC Failure (S2)
 
-| Metric | Sainte-Laguë | WLC | Difference |
-|--------|-------------|-----|------------|
-| Throughput (Mbps) | 3.111 | 2.808 | **−10.7%** |
-| Latency (ms) | 14.07 | 17.66 | **+25.5%** |
+WLC failure causes measurable QoS degradation (pre-WC vs post-WC):
+
+| Metric | Pre-WC | Post-WC | Degradation |
+|--------|--------|---------|-------------|
+| Throughput (Mbps) | 3.145 | 2.808 | **−10.7%** |
+| Latency (ms) | 14.89 | 19.52 | **+30.9%** |
+
+> Comparison at steady state: Sainte-Laguë (3.045 Mbps, 18.95 ms) vs WLC (2.943 Mbps, 17.66 ms)
 
 ---
 
