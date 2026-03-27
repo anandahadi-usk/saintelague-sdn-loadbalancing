@@ -426,5 +426,5 @@ This project is licensed under the MIT License.
 |---|------|-------------|-------|
 | 1 | **Ananda Hadi Elyas** | Doctoral Program of Engineering, Universitas Syiah Kuala | [0000-0001-8468-5411](https://orcid.org/0000-0001-8468-5411) |
 | 2 | Ramzi Adriman | Dept. ECE, Universitas Syiah Kuala | [0000-0002-2301-3627](https://orcid.org/0000-0002-2301-3627) |
-| 3 | Syahrial Syahrial | Dept. ECE, Universitas Dharmawangsa | [0000-0002-1436-4468](https://orcid.org/0000-0002-1436-4468) |
+| 3 | Syahrial Syahrial | Dept. Electrical and Computer Engineering, Universitas Syiah Kuala | [0000-0002-1436-4468](https://orcid.org/0000-0002-1436-4468) |
 | 4 | Teuku Yuliar Arif | Dept. ECE, Universitas Syiah Kuala | [0000-0002-8923-6778](https://orcid.org/0000-0002-8923-6778) |
