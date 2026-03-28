@@ -37,19 +37,18 @@ over all competitors (Cliff's δ = 1.000).
 
 ## Network Topology
 
-```
-10 Clients (10.0.1.1 – 10.0.1.10)
-           │
-      VIP: 10.0.0.100
-      Ryu SDN Controller
-           │
-      OVS Switch (OpenFlow 1.3)
-      ┌────┼────┐
-      │    │    │
-     S1   S2   S3
-  30 Mbps 50 Mbps 20 Mbps
-  (w=3)   (w=5)   (w=2)
-```
+![SDN Topology](docs/fig_topology_sdn.png)
+
+The testbed consists of 10 client hosts (10.0.1.1–10.0.1.10) directed to a virtual IP (VIP: 10.0.0.100), forwarded through an OVS Switch (OpenFlow 1.3) to three heterogeneous backend servers managed by a Ryu SDN Controller:
+
+| Server | IP | Capacity | Weight |
+|--------|-----|----------|--------|
+| S1 | 10.0.0.1 | 30 Mbps | w=3 |
+| S2 | 10.0.0.2 | 50 Mbps | w=5 |
+| S3 | 10.0.0.3 | 20 Mbps | w=2 |
+
+**Initial weights:** [3, 5, 2] → ideal distribution 30% : 50% : 20%  
+**Weight-change event (S2):** [3,5,2] → [6,5,2] → new target 46% : 38% : 15%
 
 ---
 
