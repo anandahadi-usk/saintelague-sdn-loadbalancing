@@ -72,7 +72,7 @@ The testbed consists of 10 client hosts (10.0.1.1–10.0.1.10) directed to a vir
 |-----------|----------|-----------|------------|-----------------|
 | **Sainte-Laguë** | **4.76 ± 0.17** | **88.8** | ✅ **107 flows** | — |
 | IWRR | 11.07 ± 1.08 | ∞ | ❌ | 1.000 (complete) |
-| WRR | 22.11 ± 0.91 | ∞ | ❌ | 1.000 (complete) |
+| WRR | 22.11 ± 0.04 | ∞ | ❌ | 1.000 (complete) |
 | WLC | 50.47 ± 0.94 | 29.1* | ❌ | 1.000 (complete) |
 
 > *τ_WLC = 29.1 flows is **transient only** — WLC re-diverges to 50.47%
