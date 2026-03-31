@@ -90,6 +90,17 @@ WLC failure causes measurable QoS degradation (pre-WC vs post-WC):
 
 > Comparison at steady state: Sainte-Laguë (3.045 Mbps, 18.95 ms) vs WLC (2.943 Mbps, 17.66 ms)
 
+### S3 — Frequent Weight Changes (4 changes at t=30,60,90,120s)
+
+| Algorithm | MAPE (%) | Cliff's δ vs SL |
+|-----------|----------|-----------------|
+| **Sainte-Laguë** | **4.69 ± 2.84** | — |
+| IWRR | 7.58 ± 3.05 | 1.000 (complete) |
+| WLC | 22.90 ± 6.01* | 1.000 (complete) |
+| WRR | 24.19 ± 2.16 | 1.000 (complete) |
+
+> *1 WLC run excluded (OVS crash); n=19 for WLC, n=20 for others.
+
 ---
 
 ## Repository Structure
