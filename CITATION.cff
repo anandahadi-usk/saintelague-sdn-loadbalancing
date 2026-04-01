@@ -6,8 +6,10 @@ abstract: >
   Implementation and experimental dataset for a controlled empirical study
   comparing WRR, IWRR, WLC, and Sainte-Laguë load balancing algorithms
   in SDN environments under dynamic weight-change conditions.
-  Key finding: Sainte-Laguë achieves sustained convergence (τ=88.8 flows)
-  with complete stochastic dominance (Cliff's δ=1.000) over all competitors.
+  Key finding: Sainte-Laguë achieves sustained convergence (τ=88.75±3.97 flows,
+  τ_max=97 flows) with complete stochastic dominance (Cliff's δ=−1.000) in 4 of 6
+  post-WC MAPE comparisons; S3 vs. IWRR (δ=−0.685) and S3 vs. WLC (δ=−0.984)
+  both indicate large effect. All comparisons: p<0.001 (Mann-Whitney U, BH-FDR adjusted).
 authors:
   - family-names: "Elyas"
     given-names: "Ananda Hadi"

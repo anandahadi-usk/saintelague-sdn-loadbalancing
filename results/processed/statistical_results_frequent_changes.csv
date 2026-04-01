@@ -24,7 +24,7 @@ frequent_changes,change1_mape_at_n50,wrr,iwrr,WRR,IWRR,16.9275,0.6524,14.663,1.0
 frequent_changes,change1_mape_at_n50,wrr,wlc,WRR,WLC,16.9275,0.6524,21.1111,0.0,0.0,-1.0,large,True,20,19
 frequent_changes,change1_mape_at_n50,iwrr,wlc,IWRR,WLC,14.663,1.0225,21.1111,0.0,0.0,-1.0,large,True,20,19
 frequent_changes,change1_mape_at_n100,saintelague,wrr,Sainte-Laguë,WRR,20.358,2.9385,32.1667,2.0788,0.0,-1.0,large,True,20,20
-frequent_changes,change1_mape_at_n100,saintelague,iwrr,Sainte-Laguë,IWRR,20.358,2.9385,20.0245,1.9011,0.000253,0.625,large,True,20,20
+frequent_changes,change1_mape_at_n100,saintelague,iwrr,Sainte-Laguë,IWRR,20.358,2.9385,20.0245,1.9011,0.00028,0.625,large,True,20,20
 frequent_changes,change1_mape_at_n100,saintelague,wlc,Sainte-Laguë,WLC,20.358,2.9385,55.1982,6.8213,0.0,-1.0,large,True,20,19
 frequent_changes,change1_mape_at_n100,wrr,iwrr,WRR,IWRR,32.1667,2.0788,20.0245,1.9011,0.0,1.0,large,True,20,20
 frequent_changes,change1_mape_at_n100,wrr,wlc,WRR,WLC,32.1667,2.0788,55.1982,6.8213,0.0,-0.9,large,True,20,19
@@ -33,11 +33,11 @@ frequent_changes,change1_mape_at_n200,saintelague,wrr,Sainte-Laguë,WRR,7.3209,3
 frequent_changes,change1_mape_at_n200,saintelague,iwrr,Sainte-Laguë,IWRR,7.3209,3.8328,22.9129,5.3781,0.0,-0.955,large,True,20,20
 frequent_changes,change1_mape_at_n200,saintelague,wlc,Sainte-Laguë,WLC,7.3209,3.8328,27.74,7.3672,0.0,-0.9474,large,True,20,19
 frequent_changes,change1_mape_at_n200,wrr,iwrr,WRR,IWRR,38.3604,3.4284,22.9129,5.3781,0.0,1.0,large,True,20,20
-frequent_changes,change1_mape_at_n200,wrr,wlc,WRR,WLC,38.3604,3.4284,27.74,7.3672,3e-06,0.8526,large,True,20,19
-frequent_changes,change1_mape_at_n200,iwrr,wlc,IWRR,WLC,22.9129,5.3781,27.74,7.3672,0.00239,-0.5632,large,True,20,19
+frequent_changes,change1_mape_at_n200,wrr,wlc,WRR,WLC,38.3604,3.4284,27.74,7.3672,4e-06,0.8526,large,True,20,19
+frequent_changes,change1_mape_at_n200,iwrr,wlc,IWRR,WLC,22.9129,5.3781,27.74,7.3672,0.002574,-0.5632,large,True,20,19
 frequent_changes,end_mape,saintelague,wrr,Sainte-Laguë,WRR,4.6903,2.7715,24.1874,2.1029,0.0,-1.0,large,True,20,20
-frequent_changes,end_mape,saintelague,iwrr,Sainte-Laguë,IWRR,4.6903,2.7715,7.5781,2.9723,0.000201,-0.685,large,True,20,20
+frequent_changes,end_mape,saintelague,iwrr,Sainte-Laguë,IWRR,4.6903,2.7715,7.5781,2.9723,0.000228,-0.685,large,True,20,20
 frequent_changes,end_mape,saintelague,wlc,Sainte-Laguë,WLC,4.6903,2.7715,22.9049,5.8493,0.0,-0.9842,large,True,20,19
 frequent_changes,end_mape,wrr,iwrr,WRR,IWRR,24.1874,2.1029,7.5781,2.9723,0.0,1.0,large,True,20,20
-frequent_changes,end_mape,wrr,wlc,WRR,WLC,24.1874,2.1029,22.9049,5.8493,0.176738,-0.2526,small,False,20,19
+frequent_changes,end_mape,wrr,wlc,WRR,WLC,24.1874,2.1029,22.9049,5.8493,0.185575,-0.2526,small,False,20,19
 frequent_changes,end_mape,iwrr,wlc,IWRR,WLC,7.5781,2.9723,22.9049,5.8493,0.0,-0.9474,large,True,20,19

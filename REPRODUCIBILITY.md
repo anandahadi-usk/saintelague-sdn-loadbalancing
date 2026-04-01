@@ -78,10 +78,16 @@ python3 docs/create_figures_p5.py
 ### 7. Run Statistical Analysis
 
 ```bash
-python3 evaluation/statistical_tests.py \
-    --input results/processed/aggregated_mape.csv \
-    --output results/processed/statistical_tests.csv
+python3 evaluation/statistical_tests.py --scenario all
 ```
+
+The script runs three steps in sequence:
+1. **Shapiro-Wilk** normality pre-test for each algorithm × metric × scenario.
+   Output: `results/processed/normality_tests.csv` (W statistics, p-values).
+2. **Mann-Whitney U** pairwise comparisons (two-sided).
+3. **Benjamini-Hochberg FDR** correction across all comparisons per scenario.
+   Output: `results/processed/statistical_results_{scenario}.csv` and
+   `results/processed/statistical_results_all.csv` (BH-FDR adjusted p-values).
 
 ---
 

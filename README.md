@@ -18,9 +18,10 @@ weighted load balancing algorithms in Software-Defined Networking (SDN)
 environments under dynamic weight-change conditions.
 
 **Key finding:** Sainte-Laguë is the only algorithm that achieves
-*sustained convergence* after weight changes (τ = 88.8 flows, 107
-consecutive flows below 5% MAPE), with complete stochastic dominance
-over all competitors (Cliff's δ = 1.000).
+*sustained convergence* after weight changes (τ = 88.75 ± 3.97 flows; τ_max = 97 flows;
+cross-run mean MAPE stays below 5% for the final 107 consecutive flows).
+Complete stochastic dominance (Cliff's δ = −1.000) confirmed in 4 of 6 post-WC MAPE
+comparisons; S3 vs. IWRR (δ = −0.685) and S3 vs. WLC (δ = −0.984) both remain large effects.
 
 ---
 
@@ -70,14 +71,15 @@ The testbed consists of 10 client hosts (10.0.1.1–10.0.1.10) directed to a vir
 
 | Algorithm | MAPE (%) | τ (flows) | Sustained? | Cliff's δ vs SL |
 |-----------|----------|-----------|------------|-----------------|
-| **Sainte-Laguë** | **4.76 ± 0.17** | **88.8** | ✅ **107 flows** | — |
+| **Sainte-Laguë** | **4.76 ± 0.17** | **88.8 ± 3.9** | ✅ mean-traj 107 flows† | — |
 | IWRR | 11.07 ± 1.08 | ∞ | ❌ | 1.000 (complete) |
 | WRR | 22.11 ± 0.04 | ∞ | ❌ | 1.000 (complete) |
 | WLC | 50.47 ± 0.94 | 29.1* | ❌ | 1.000 (complete) |
 
-> *τ_WLC = 29.1 flows is **transient only** — WLC re-diverges to 50.47%
+> *τ_WLC = 29.1 flows is **transient only** — WLC re-diverges to 50.47%  
+> †Mean MAPE across all 20 SL runs remains below ε=5% for 107 consecutive flows at run end (post-WC flows 94–200). τ_max = 97 flows (slowest single run).
 
-All comparisons: p < 0.0001 (Mann-Whitney U), |δ| ≥ 0.625
+All S2 MAPE comparisons: p < 0.001 (Mann-Whitney U, BH-FDR adjusted; Shapiro-Wilk pre-test confirmed non-normality in all distributions), Cliff's δ = −1.000 (complete stochastic dominance)
 
 ### QoS Cascade from WLC Failure (S2)
 
@@ -95,8 +97,8 @@ WLC failure causes measurable QoS degradation (pre-WC vs post-WC):
 | Algorithm | MAPE (%) | Cliff's δ vs SL |
 |-----------|----------|-----------------|
 | **Sainte-Laguë** | **4.69 ± 2.84** | — |
-| IWRR | 7.58 ± 3.05 | 1.000 (complete) |
-| WLC | 22.90 ± 6.01* | 1.000 (complete) |
+| IWRR | 7.58 ± 3.05 | 0.685 (large) |
+| WLC | 22.90 ± 6.01* | 0.984 (large) |
 | WRR | 24.19 ± 2.16 | 1.000 (complete) |
 
 > *1 WLC run excluded (OVS crash); n=19 for WLC, n=20 for others.
@@ -130,7 +132,7 @@ saintelague-sdn-loadbalancing/
 ├── evaluation/                  # Analysis and statistics
 │   ├── run_experiment.py        # Main experiment runner
 │   ├── convergence_analyzer.py  # τ computation, MAPE analysis
-│   ├── statistical_tests.py     # Mann-Whitney U, Cliff's delta
+│   ├── statistical_tests.py     # Shapiro-Wilk, Mann-Whitney U + BH-FDR, Cliff's delta
 │   ├── qos_analyzer.py          # Throughput, latency, jitter, loss
 │   └── plot_results.py          # Publication figures
 │
