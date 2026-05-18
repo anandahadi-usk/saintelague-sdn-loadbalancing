@@ -342,10 +342,16 @@ If you use this code or data in your research, please cite:
   author  = {Elyas, Ananda Hadi and Adriman, Ramzi and
              Syahrial, Syahrial and Arif, Teuku Yuliar},
   title   = {{Post-Reconfiguration Convergence in SDN Load Balancing:
-              A Comparative Empirical Study}},
-  journal = {{[Target Journal]}},
+              A Comparative Empirical Study of WRR, IWRR, WLC,
+              and Sainte-Lagu\"{e}}},
+  journal = {International Journal of Intelligent Engineering and Systems},
+  volume  = {19},
+  number  = {6},
+  pages   = {912--928},
   year    = {2026},
-  note    = {Under review}
+  doi     = {10.22266/ijies2026.0630.49},
+  url     = {https://inass.org/wp-content/uploads/2026/04/2026063049-2.pdf},
+  publisher = {Intelligent Networks and Systems Society (INASS)}
 }
 ```
 

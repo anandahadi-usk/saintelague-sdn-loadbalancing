@@ -50,7 +50,7 @@ preferred-citation:
   type: article
   title: >
     Post-Reconfiguration Convergence in SDN Load Balancing:
-    A Comparative Empirical Study
+    A Comparative Empirical Study of WRR, IWRR, WLC, and Sainte-Laguë
   authors:
     - family-names: "Elyas"
       given-names: "Ananda Hadi"
@@ -68,6 +68,14 @@ preferred-citation:
       given-names: "Teuku Yuliar"
       affiliation: "Dept. Electrical and Computer Engineering, Universitas Syiah Kuala"
       orcid: "https://orcid.org/0000-0002-8923-6778"
-  journal: "[Journal Name — to be updated upon acceptance]"
+  journal: "International Journal of Intelligent Engineering and Systems"
+  volume: 19
+  issue: 6
+  start: 912
+  end: 928
   year: 2026
-  status: under-review
+  month: 6
+  doi: "10.22266/ijies2026.0630.49"
+  url: "https://inass.org/wp-content/uploads/2026/04/2026063049-2.pdf"
+  publisher:
+    name: "Intelligent Networks and Systems Society (INASS)"
